@@ -16,7 +16,7 @@ At dir *acpypi/test*, type:
 
   * ` ../acpypi.py -i FFF.pdb`
 
-It'll create a folder called *FFF.acpypi*, and inside it one may find topology files for GROMACS and CNS.
+It'll create a folder called *FFF.acpypi*, and inside it one may find topology files for GROMACS and CNS/XPLOR.
 
 To get help and more information, type:
 
