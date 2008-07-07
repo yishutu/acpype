@@ -12,8 +12,10 @@ Download it:
 
 At dir *acpypi*, type:
 
-  * ` _./acpypi.py -i FFF.pdb_`
+  * ` ./acpypi.py -i FFF.pdb`
+
+It'll create a folder called *FFF.acpypi*, and inside it one may find topology files for GROMACS and CNS.
 
 To get help, type:
 
-  *  `_./acpypi.py -h_`
+  *  `./acpypi.py -h`
