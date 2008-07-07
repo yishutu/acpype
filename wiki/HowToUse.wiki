@@ -4,7 +4,7 @@ _It's still under development_
 
 == Introduction ==
 
-To run *acpypi*, you need *ANTECHAMBER* from package [http://amber.scripps.edu/#AmberTools amberTools] and *OpenBabel* if your input files are of PDB format.
+To run *acpypi*, you need *ANTECHAMBER* from package [http://amber.scripps.edu/#AmberTools amberTools] and [http://openbabel.org/wiki/Main_Page Open Babel] if your input files are of PDB format.
 
 Download *acpypi* via:
 
