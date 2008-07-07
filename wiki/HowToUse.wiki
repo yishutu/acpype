@@ -10,7 +10,7 @@ Download it:
 
 == To Test ==
 
-At dir *acpypi*, type:
+At dir *acpypi/test*, type:
 
   * ` ./acpypi.py -i FFF.pdb`
 
