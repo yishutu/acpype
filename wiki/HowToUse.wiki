@@ -4,7 +4,9 @@ _It's still under development_
 
 == Introduction ==
 
-Download it:
+To run *acpypi*, you need *ANTECHAMBER* from package [http://amber.scripps.edu/#AmberTools amberTools] and *OpenBabel* if your input files are of PDB format.
+
+Download *acpypi* via:
 
 `svn checkout http://acpypi.googlecode.com/svn/trunk/ acpypi`
 
