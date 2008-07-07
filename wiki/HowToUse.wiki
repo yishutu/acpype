@@ -1,13 +1,19 @@
-#summary One-sentence summary of this page.
+#How To Use ACPYPI.
+
+_It's still under development_
 
 = Introduction =
 
-Add your content here.
+Download it:
 
+svn checkout http://acpypi.googlecode.com/svn/trunk/ acpypi
 
-= Details =
+= To Test =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+At dir *acpypi*, type:
+
+* _./acpypi.py -i FFF.pdb_
+
+To get help, type:
+
+* _./acpypi.py -h_
