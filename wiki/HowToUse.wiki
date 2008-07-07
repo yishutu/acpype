@@ -1,19 +1,19 @@
-#How To Use ACPYPI.
+= How To Use ACPYPI = 
 
 _It's still under development_
 
-= Introduction =
+== Introduction ==
 
 Download it:
 
-_ svn checkout http://acpypi.googlecode.com/svn/trunk/ acpypi _
+`svn checkout http://acpypi.googlecode.com/svn/trunk/ acpypi`
 
-= To Test =
+== To Test ==
 
 At dir *acpypi*, type:
 
-  *  _./acpypi.py -i FFF.pdb_
+  * ` _./acpypi.py -i FFF.pdb_`
 
 To get help, type:
 
-  *  _./acpypi.py -h_
+  *  `_./acpypi.py -h_`
