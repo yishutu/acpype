@@ -122,7 +122,7 @@ grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 mdrun -v -deffnm em
 }}}
 
-*NB(1):* `#include "Ligand.itp"` has to be inserted right after ffamber*.itp
+*NB(1):* `#include "Ligand.itp"` has to be inserted right after ffamber**.itp
 line and before `Protein_*.itp` line in _Complex.top_.
 
 Voila!
