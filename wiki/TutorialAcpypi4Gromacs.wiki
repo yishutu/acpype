@@ -38,7 +38,7 @@ sudo \cp ffamber*/* ${gmx_top_dir}
 sudo \cp -b ffamber_additions/* ${gmx_top_dir}
 }}}
 
-*NB:* `/sw/share/gromacs/top/` is the pertinent to Mac. Find the equivalent
+*NB:* `/sw/share/gromacs/top/` is pertinent to Mac. Find the equivalent
 GROMACS top folder within your platform.
 
 Now you should have a operative GROMACS with FFAMBER.
@@ -46,7 +46,7 @@ Now you should have a operative GROMACS with FFAMBER.
 == Running An Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use forcefield Amber99
+(HIV protease) with a ligand called DMP. We will use forcefield Amber99.
 
 In a script-like way:
 {{{
@@ -125,4 +125,4 @@ mdrun -v -deffnm em
 *NB(1):* `#include "Ligand.itp"` has to be inserted right after ffamber*.itp
 line and before `Protein_*.itp` line in _Complex.top_.
 
-Voilˆ!
+Voila!
