@@ -1,5 +1,5 @@
 #labels Phase-Deploy
-= How To Use ACPYPI = 
+= How To Use ACPYPI =
 
 _It's still under development_
 
@@ -22,3 +22,11 @@ It'll create a folder called *FFF.acpypi*, and inside it one may find topology f
 To get help and more information, type:
 
   *  `../acpypi.py -h`
+
+== To Install ==
+
+At dir *acpypi*, do:
+
+  * `ln -s $PWD/acpypi.py /usr/local/bin/acpypi`
+
+And re-login or start another shell session.
