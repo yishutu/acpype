@@ -1,0 +1,128 @@
+#labels Phase-Deploy
+= Tutorial Using ACPYPI for GROMACS =
+
+== Introduction ==
+
+This tutorial is to show how to prepare a system to run on GROMACS, starting
+with PDB file for a complex protein/ligand
+
+*NB:* Besides *acpypi*, *antechamber* and *babel*, you will need GROMACS with
+FFAMBER.
+
+== Getting GROMACS ==
+
+Install [http://www.gromacs.org/ GROMACS]. The current version is 3.3.3.
+Something like:
+
+  * `sudo apt-get install gromacs` # if you use Ubuntu, or
+
+  * `fink install gromacs` # if you use Mac
+
+should do the trick.
+
+== Getting [http://chemistry.csulb.edu/ffambe FFAMBER] ==
+
+The appropriate version of ffamber for GMX is 3.3.1. Got the one with PDFs.You
+definitely need to read those papers.
+To summarise in a script-like way:
+{{{
+# assuming you are at acpypi installation folder
+gmx_top_dir=/sw/share/gromacs/top/
+wget -c http://chemistry.csulb.edu/ffamber/ffamber_v3.3.1-doc.tar.gz
+tar xvfz ffamber_v3.3.1-doc.tar.gz
+cd ffamber_v3.3.1/
+sudo \cp ffamber_* ${gmx_top_dir}
+sudo \cp aminoacids-NA.dat ${gmx_top_dir}/aminoacids.dat
+sudo \cp ffamber*/* ${gmx_top_dir}
+# Get my additions:
+sudo \cp -b ffamber_additions/* ${gmx_top_dir}
+}}}
+
+*NB:* `/sw/share/gromacs/top/` is the pertinent to Mac. Find the equivalent
+GROMACS top folder within your platform.
+
+Now you should have a operative GROMACS with FFAMBER.
+
+== Running An Example ==
+
+This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
+(HIV protease) with a ligand called DMP. We will use forcefield Amber99
+
+In a script-like way:
+{{{
+# Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb
+grep 'ATOM  ' 1BVG.pdb>| Protein.pdb
+grep 'HETATM' 1BVG.pdb>| Ligand.pdb
+
+# Edit Protein.pdb according to [http://chemistry.csulb.edu/ffamber/#usage ffamber]
+sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 1/g \
+| sed s/PHE\ A\ \ 99/CPHEA\ \ 99/g | sed s/PHE\ B\ \ 99/CPHEB\ \ 99/g \
+| sed s/O\ \ \ CPHE/OC1\ CPHE/g | sed s/OXT\ CPHE/OC2\ CPHE/g \
+| sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >| ProteinAmber.pdb
+
+# Process with pdb2gmx and define water
+pdb2gmx -ff amber99 -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p
+
+# Generate Ligand topology file with acpypi (GAFF)
+acpypi -i Ligand.pdb
+
+# Merge Protein2.pdb + updated Ligand_CNS.pdb -> Complex.pdb
+grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_CNS.pdb >| Complex.pdb
+
+# Edit Protein.top -> Complex.top
+\cp Ligand.acpypi/Ligand_GMX.itp Ligand.itp
+\cp Protein.top Complex.top
+l1=$( expr `sed -n /'Include forcefield parameters'/= Complex.top` + 2 )
+l2=`sed -n /'Protein'/= Complex.top |tail -n 1`
+echo "$l1{" >| temp1
+echo 'i\ ' >> temp1
+echo '; Include generic topology for ligand' >> temp1
+echo 'i\ ' >> temp1
+echo '#'include '"'Ligand.itp'"' >> temp1 # NB(1)
+echo '}' >> temp1
+echo "$l2{" >> temp1
+echo 'a\ ' >> temp1
+echo "Ligand   1" >> temp1
+echo '}' >> temp1
+sed -f temp1 Complex.top >| Complex2.top; \mv Complex2.top Complex.top
+
+# Setup the box and add water
+editconf -bt triclinic -f Complex.pdb -o Complex.pdb -d 1.0
+genbox -cp Complex.pdb -cs ffamber_tip3p.gro -o Complex_b4ion.pdb -p Complex.top
+
+# Create em.mdp file
+cat << EOF >| em.mdp
+cpp                      = /usr/bin/cpp
+define                   = -DFLEXIBLE
+integrator               = steep
+nsteps                   = 100
+constraints              = none
+emtol                    = 1000.0
+emstep                   = 0.01
+nstcomm                  = 1
+ns_type                  = grid
+rlist                    = 1.0
+rcoulomb                 = 1.0
+rvdw                     = 1.4
+Tcoupl                   = no
+Pcoupl                   = no
+gen_vel                  = no
+EOF
+
+# Setup ions
+grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
+echo 13 | genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -nname Cl -nn 4 -norandom
+
+# Edit Complex.top
+sed s/7258/7254/ Complex.top >| temp1
+echo "Cl  4" >> temp1; \mv temp1 Complex.top
+
+# Run minimisaton
+grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
+mdrun -v -deffnm em
+}}}
+
+*NB(1):* `#include "Ligand.itp"` has to be inserted right after ffamber*.itp
+line and before `Protein_*.itp` line in _Complex.top_.
+
+Voilˆ!
