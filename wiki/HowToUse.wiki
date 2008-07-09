@@ -13,7 +13,7 @@ Download *acpypi* via:
 
 == To Test ==
 
-At dir *acpypi/test*, type:
+At folder *acpypi/test*, type:
 
   * `../acpypi.py -i FFF.pdb`
 
@@ -38,12 +38,12 @@ vmd md.gro md.trr
 }}}
 
 == To Verify with CNS/XPLOR ==
-At folder *FFF.acpypi*, do:
+At folder *FFF.acpypi*, type:
   * `cns < FFF_CNS.inp`
 
 == To Install ==
 
-At dir *acpypi*, do:
+At folder *acpypi*, type:
 
   * `ln -s $PWD/acpypi.py /usr/local/bin/acpypi`
 
