@@ -21,7 +21,7 @@ It'll create a folder called *FFF.acpypi*, and inside it one may find topology f
 
 To get help and more information, type:
 
-  *  `../acpypi.py -h`
+  * `../acpypi.py -h`
 
 == To Verify with GMX ==
 {{{
@@ -38,8 +38,8 @@ vmd md.gro md.trr
 }}}
 
 == To Verify with CNS/XPLOR ==
-
-
+At folder *FFF.acpypi*, do:
+  * `cns < FFF_CNS.inp`
 
 == To Install ==
 
