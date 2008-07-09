@@ -73,19 +73,12 @@ grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_NEW.pdb >| Complex.pdb
 # Edit Protein.top -> Complex.top
 \cp Ligand.acpypi/Ligand_GMX.itp Ligand.itp
 \cp Protein.top Complex.top
-l1=$( expr `sed -n /'Include forcefield parameters'/= Complex.top` + 2 )
-l2=`sed -n /'Protein'/= Complex.top |tail -n 1`
-echo "$l1{" >| temp1
-echo 'i\ ' >> temp1
-echo '; Include generic topology for ligand' >> temp1
-echo 'i\ ' >> temp1
-echo '#'include '"'Ligand.itp'"' >> temp1 # NB(1)
-echo '}' >> temp1
-echo "$l2{" >> temp1
-echo 'a\ ' >> temp1
-echo "Ligand   1" >> temp1
-echo '}' >> temp1
-sed -f temp1 Complex.top >| Complex2.top; \mv Complex2.top Complex.top
+# See NB(1) below
+cat Complex.top | sed '/\;\ Include\ chain\ topologies/i\
+#include "Ligand.itp"
+' >| Complex2.top
+echo "Ligand   1" >> Complex2.top
+\mv Complex2.top Complex.top
 
 # Setup the box and add water
 editconf -bt triclinic -f Complex.pdb -o Complex.pdb -d 1.0
@@ -111,12 +104,9 @@ gen_vel                  = no
 EOF
 
 # Setup ions
-grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
-echo 13 | genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -nname Cl -nn 4 -norandom
-
-# Edit Complex.top
-sed s/7267/7263/ Complex.top >| temp1
-echo "Cl  4" >> temp1; \mv temp1 Complex.top
+\cp Complex.top Complex_ion.top
+echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top
+\mv Complex_ion.top Complex.top
 
 # Run minimisaton
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
