@@ -43,7 +43,7 @@ GROMACS top folder within your platform.
 
 Now you should have a operative GROMACS with FFAMBER.
 
-== Running An Example ==
+== Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use forcefield Amber99.
@@ -51,6 +51,7 @@ This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 In a script-like way:
 {{{
 # Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb
+wget -c "http://www.pdb.org/pdb/download/downloadFile.do?fileFormat=pdb&compression=NO&structureId=1BVG" -O 1BVG.pdb
 grep 'ATOM  ' 1BVG.pdb>| Protein.pdb
 grep 'HETATM' 1BVG.pdb>| Ligand.pdb
 
@@ -61,13 +62,13 @@ sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 
 | sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >| ProteinAmber.pdb
 
 # Process with pdb2gmx and define water
-pdb2gmx -ff amber99 -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p
+pdb2gmx -ff amber99 -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p -ignh
 
 # Generate Ligand topology file with acpypi (GAFF)
 acpypi -i Ligand.pdb
 
-# Merge Protein2.pdb + updated Ligand_CNS.pdb -> Complex.pdb
-grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_CNS.pdb >| Complex.pdb
+# Merge Protein2.pdb + updated Ligand_NEW.pdb -> Complex.pdb
+grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_NEW.pdb >| Complex.pdb
 
 # Edit Protein.top -> Complex.top
 \cp Ligand.acpypi/Ligand_GMX.itp Ligand.itp
@@ -103,7 +104,7 @@ nstcomm                  = 1
 ns_type                  = grid
 rlist                    = 1.0
 rcoulomb                 = 1.0
-rvdw                     = 1.4
+rvdw                     = 1.0
 Tcoupl                   = no
 Pcoupl                   = no
 gen_vel                  = no
@@ -114,7 +115,7 @@ grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 echo 13 | genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -nname Cl -nn 4 -norandom
 
 # Edit Complex.top
-sed s/7258/7254/ Complex.top >| temp1
+sed s/7267/7263/ Complex.top >| temp1
 echo "Cl  4" >> temp1; \mv temp1 Complex.top
 
 # Run minimisaton
