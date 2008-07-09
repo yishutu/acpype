@@ -15,13 +15,31 @@ Download *acpypi* via:
 
 At dir *acpypi/test*, type:
 
-  * ` ../acpypi.py -i FFF.pdb`
+  * `../acpypi.py -i FFF.pdb`
 
 It'll create a folder called *FFF.acpypi*, and inside it one may find topology files for GROMACS and CNS/XPLOR.
 
 To get help and more information, type:
 
   *  `../acpypi.py -h`
+
+== To Verify with GMX ==
+{{{
+cd FFF.acpypi/
+grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr
+mdrun -v -deffnm em
+# And if you have VMD
+vmd em.gro em.trr
+
+# For MD, do:
+grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
+mdrun -v -deffnm md
+vmd md.gro md.trr
+}}}
+
+== To Verify with CNS/XPLOR ==
+
+
 
 == To Install ==
 
