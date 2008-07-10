@@ -104,6 +104,7 @@ gen_vel                  = no
 EOF
 
 # Setup ions
+grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 \cp Complex.top Complex_ion.top
 echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top
 \mv Complex_ion.top Complex.top
