@@ -3,7 +3,10 @@
 
 == Introduction ==
 
-To run *acpypi*, you need *ANTECHAMBER* from package [http://amber.scripps.edu/#AmberTools amberTools] and [http://openbabel.org/wiki/Main_Page Open Babel] if your input files are of PDB format.
+To run *acpypi*, you need *ANTECHAMBER* from package
+[http://amber.scripps.edu/#AmberTools amberTools] and
+[http://openbabel.org/wiki/Main_Page Open Babel] if your input files are of PDB
+format.
 
 Download *acpypi* via:
 
@@ -15,7 +18,8 @@ At folder *acpypi/test*, type:
 
   * `../acpypi.py -i FFF.pdb`
 
-It'll create a folder called *FFF.acpypi*, and inside it one may find topology files for GROMACS and CNS/XPLOR.
+It'll create a folder called *FFF.acpypi*, and inside it one may find topology
+files for GROMACS and CNS/XPLOR.
 
 To get help and more information, type:
 
