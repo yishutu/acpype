@@ -1,0 +1,52 @@
+{{{
+cing2 -n test_1brvV2 --initCcpn 1brvV2 --validate
+
+======================================================================================================
+| CING: Common Interface for NMR structure Generation version 0.764             AW,JFD,GWV 2004-2008 |
+======================================================================================================
+
+Warning: Project file has moved from "/ebi/msd/nmrqual/chris/workspace/all_beta/data/recoord/1brv/mergePdbStarTrunkTest" to "/Users/alan/workspace/cingWork/Tests/1brvV2", updating path
+Warning: Backup path "/net/nfs5/vol3/msd-nmrqual/chris/workspace/all_beta/python/recoord2/msd/1brv_backup" does not exist
+Warning: refData has been changed from "/ebi/msd/nmrqual/chris/workspace/all_beta/data" to "/Users/alan/workspace/all/data", updating paths
+==> Importing data from Ccpn project "1brv"
+WARNING: Atom not found in Cing DB: CING, INTERNAL, A, Asn, 158, H1, CING Res name = ASN
+WARNING: Atom not found in Cing DB: CING, INTERNAL, A, Asn, 158, H2, CING Res name = ASN
+WARNING: Atom not found in Cing DB: CING, INTERNAL, A, Asn, 158, H3, CING Res name = ASN
+WARNING: Atom not found in Ccpn: <ccp.molecule.MolSystem.Atom ['1brv', 'A', 14, 'H']>, <Atom VAL171.HN>
+WARNING: Atom not found in Cing DB: CING, INTERNAL, A, Glu, 189, O', CING Res name = GLUH
+WARNING: Atom not found in Cing DB: CING, INTERNAL, A, Glu, 189, O'', CING Res name = GLUH
+==> Calculating dihedrals ... 
+Recognized the following disulfide bridged residues.
+<Residue CYSS173> <Residue CYSS186>
+<Residue CYSS176> <Residue CYSS182>
+==> Calculating secondary structure by DSSP
+done with coordinate import
+Ccpn molecule '1brv' imported with coordinates
+----------- Molecule: 1brv -----------
+chains:      1 [<Chain A>]
+residues:    32
+atoms:       542
+models:      48
+resonances:  0 per atom; sources []
+assignments: 0 (0 stereo)
+--------------------------------------
+Ccpn project imported
+----------- Project: test_1brvV2 -----------
+created:    Wed Jul 16 09:36:54 2008
+molecules:  [<Molecule "1brv" (C:1,R:32,A:542,M:48)>]
+peaks:      []
+distances:  [<DistanceRestraintList "distance_constraint_list" (keep,264)>]
+dihedrals:  [<DihedralRestraintList "dihedral_constraint_list" (keep,29)>]
+rdcs:       []
+reports:    []
+--------------------------------------------
+----------- Project: test_1brvV2 -----------
+created:    Wed Jul 16 09:36:54 2008
+molecules:  [<Molecule "1brv" (C:1,R:32,A:542,M:48)>]
+peaks:      []
+distances:  [<DistanceRestraintList "distance_constraint_list" (keep,264)>]
+dihedrals:  [<DihedralRestraintList "dihedral_constraint_list" (keep,29)>]
+rdcs:       []
+reports:    []
+--------------------------------------------
+}}}
