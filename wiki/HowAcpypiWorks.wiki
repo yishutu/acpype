@@ -10,12 +10,14 @@ does but with some remarkable differences:
 
   * as in *amb2gmx.pl*, torsionals (proper and impropers) are treated as RBs in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER forcefields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as propers in GROMACS to use correct AMBER analytical function;
 
-  * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
+  * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
   * it generates topologies for CNS/XPLOR;
 
-  * *acpypi* tries to smooth the integration with GROMACS for a immediate use (see [http://code.google.com/p/acpypi/wiki/TutorialAcpypi4Gromacs wiki]).
+  * *acpypi* tries to smooth the integration with GROMACS for a immediate use (see TutorialAcpypi4Gromacs).
 
 *HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert than in a _mol2_ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`, *acpypi* will take these charges defined in the _mol2_ input file.
 
-Ideally, one should know well about the molecule one is trying to parametrise and should read the pertinent papers related to the forcefield intended to be used. Therefore be _warned_ if using *acpypi/antechamber* as a _blackbox_.
+Ideally, one should know well about the molecule one is trying to parametrise
+and should read the pertinent papers related to the forcefield intended to be
+used. Therefore be *_warned_* if using *acpypi/antechamber* as a *_blackbox_*.
