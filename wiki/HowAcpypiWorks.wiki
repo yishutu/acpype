@@ -3,7 +3,7 @@
 
 It is totally based on *ANTECHAMBER* and although it may work with old versions,
 it is recommended to use the one that comes in
-[http://amber.scripps.edu/AmberTools-get.html *AmberTools*] (version 1.2 now).
+*[http://amber.scripps.edu/AmberTools-get.html AmberTools]* (version 1.2 now).
 
 It basically does what [http://chemistry.csulb.edu/ffamber/amb2gmx.pl
 amb2gmx.pl] does but with some remarkable differences:
@@ -32,4 +32,3 @@ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`,
 Ideally, one should know well about the molecule one is trying to parametrise
 and should read the pertinent papers related to the forcefield intended to be
 used. Therefore be _warned_ if using *acpypi/antechamber* as a _blackbox_.
-
