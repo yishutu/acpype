@@ -6,7 +6,7 @@ it is recommended to use the one that comes in
 *[http://amber.scripps.edu/AmberTools-get.html AmberTools]* (version 1.2 now).
 
 It basically does what [http://chemistry.csulb.edu/ffamber/amb2gmx.pl
-amb2gmx.pl] does but with some remarkable differences:
+amb2gmx] does but with some remarkable differences:
 
   * as in *amb2gmx.pl*, torsionals (proper and impropers) are treated as RBs in
   GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi*
