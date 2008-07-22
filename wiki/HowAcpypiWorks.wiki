@@ -18,6 +18,26 @@ does but with some remarkable differences:
 
 *HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert than in a _mol2_ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`, *acpypi* will take these charges defined in the _mol2_ input file.
 
+== IMPORTANT ==
+
 Ideally, one should know well about the molecule one is trying to parametrise
 and should read the pertinent papers related to the forcefield intended to be
-used. Therefore be *_warned_* if using *acpypi/antechamber* as a *_blackbox_*.
+used (see references below). Therefore be *_warned_* if using
+*acpypi/antechamber* as a *_blackbox_*.
+
+== References ==
+
+ * Antechamber (link, paper and manual)
+ * Amber (link, paper and manual)
+ * Gromacs (link, paper and manual)
+ * ffamberxx
+ ...
+ * CNS
+ * XPLOR
+ * XPLOR-HIH
+ * xplo2d
+ * CHARMM
+ * [http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]
+ * NAMD
+ * [http://www.yasara.org/autosmiles.htm YASARA Autosmiles]
+ 
