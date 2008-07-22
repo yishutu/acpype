@@ -1,13 +1,8 @@
 #labels Phase-Deploy
-= How ACPYPI Works =
+= FAQ =
 
-* *Q:* Why only one residue per try?
-  *A:* *ACPYPI* is not ready to deal with more than one chain. In fact,
-  *antechamber* will likely take the first residue name and apply for all.
-  Results can be completely unpredictable. Split your molecular system with one
-  ligand only in each pdb/mol2 file.
+  * *Q: Why only one residue per try?*
+  * *A:* *ACPYPI* is not ready to deal with more than one chain. In fact, *antechamber* will likely take the first residue name and apply for all. Results can be completely unpredictable. Split your molecular system with one ligand only in each pdb/mol2 file.
 
-* *Q:* I have a modified residue in my protein or ligand covalently bonded to
-  my protein and *ACPYPI* doesn't work. Why?
-  *A:* *ACPYPI* is not that smart to automatise this process, but one can still
-  obtain a topology. Soon a tutorial will be available.
+  * *Q: I have a modified residue in my protein or ligand covalently bonded to  my protein and ACPYPI doesn't work. Why?*
+  * *A:* *ACPYPI* is not that smart to automatise this procedure, but one can still  obtain a topology. Soon a tutorial will be available.
