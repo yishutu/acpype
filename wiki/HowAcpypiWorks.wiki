@@ -37,7 +37,7 @@ used (see references below). Therefore be *_warned_* if using
     # Hess, B., Kutzner, C., vanderSpoel, D., and Lindahl, E. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
     # Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005).
- ...* AMBER-94 => ffamber94: [http://chemistry.csulb.edu/ffamber/pdfs/cornell_amber94_1995jacs.pdf Cornell et al. (1995), JACS 117, 5179-5197]
+    * AMBER-94 => ffamber94: [http://chemistry.csulb.edu/ffamber/pdfs/cornell_amber94_1995jacs.pdf Cornell et al. (1995), JACS 117, 5179-5197]
     * AMBER-96 => ffamber96: [http://chemistry.csulb.edu/ffamber/pdfs/kollman_amber_1996acr.pdf Kollman (1996), Acc. Chem. Res. 29, 461-469]
     * AMBER-99 => ffamber99: [http://chemistry.csulb.edu/ffamber/pdfs/wang_amber99_2000jcc.pdf Wang et al. (2000), J. Comp. Chem. 21, 1049-1074]
     * AMBER-03 => ffamber03: [http://chemistry.csulb.edu/ffamber/pdfs/duan_AMBER03_2003jcc.pdf Duan et al. (2003), J. Comp. Chem. 24, 1999-2012]
