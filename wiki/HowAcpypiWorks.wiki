@@ -28,8 +28,8 @@ used (see references below). Therefore be *_warned_* if using
 == References ==
 
  * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/items/volume_63/2232000/2232695/2/print/AmberToolsi.pdf manual])
-    # Wang, J., Wang, W., Kollman P. A.; Case, D. A. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling , 25, 247-260 (2006).
-    # Wang, J., Wolf, R. M.; Caldwell, J. W.;Kollman, P. A.; Case, D. A. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 2004, 1157-1174.
+    # Wang, J., Wang, W., Kollman P. A. and Case, D. A. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling, 25, 247-260 (2006).
+    # Wang, J., Wolf, R. M., Caldwell, J. W., Kollman, P. A. and Case, D. A. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 1157-1174 (2004).
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
     # D.A. Case, T.E. Cheatham, III, T. Darden, H. Gohlke, R. Luo, K.M. Merz, Jr., A. Onufriev, C. Simmerling, B. Wang and R. Woods. "The Amber biomolecular simulation programs". J. Computat. Chem. 26, 1668-1688 (2005).
     # J.W. Ponder and D.A. Case. "Force fields for protein simulations". Adv. Prot. Chem. 66, 27-85 (2003).
