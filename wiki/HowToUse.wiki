@@ -37,6 +37,13 @@ vmd em.gro em.trr
 grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr
 mdrun -v -deffnm md
 vmd md.gro md.trr
+
+# with openmpi for 2 processors
+grompp -c FFF_GMX.gro -p FFF_GMX.top -f em.mdp -o em.tpr -np 2 #-sort -shuffle
+mpirun -n 2 mdrun_mpi -v -deffnm em #-np 2
+grompp -c em.gro -p FFF_GMX.top -f md.mdp -o md.tpr -np 2 #-sort -shuffle
+mpirun -n 2 mdrun_mpi -v -deffnm md # -np 2
+vmd md.gro md.trr
 }}}
 
 == To Verify with CNS/XPLOR ==
