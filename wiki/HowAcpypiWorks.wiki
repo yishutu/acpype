@@ -54,6 +54,6 @@ used (see references below). Therefore be *_warned_* if using
  * *[http://xray.bmc.uu.se/usf/xplo2d_man.html XPLO2D]* ([http://xray.bmc.uu.se/hicup/faq.html FAQ], [ftp://xray.bmc.uu.se/pub/gerard/xutil/ download])
     # G.J. Kleywegt, K. Henrick, E.J. Dodson & D.M.F. van Aalten. "Pound-wise but penny-foolish: How well do micromolecules fare in macromolecular refinement?" Structure, 11, 1051-1059 (2003).
  * *[CHARMM]*
- * *[http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]*
  * *[NAMD]*
+ * *[http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]* by Alexander MacKerell
  * *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*
