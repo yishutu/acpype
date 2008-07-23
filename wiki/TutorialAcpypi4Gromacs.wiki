@@ -140,9 +140,9 @@ grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 mdrun -v -deffnm md
 
 # or with openmpi, for a dual core
-grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2 -sort -shuffle
+grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
-grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2 -sort -shuffle
+grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2
 om-mpirun -n 2 mdrun_mpi -v -deffnm md
 }}}
 
