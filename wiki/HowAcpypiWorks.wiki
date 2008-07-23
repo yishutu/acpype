@@ -27,7 +27,7 @@ used (see references below). Therefore be *_warned_* if using
 
 == References ==
 
- * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/items/volume_63/2232000/2232695/2/print/AmberToolsi.pdf manual]
+ * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/items/volume_63/2232000/2232695/2/print/AmberToolsi.pdf manual])
     # Wang, J., Wang, W., Kollman P. A.; Case, D. A. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling , 25, 247-260 (2006).
     # Wang, J., Wolf, R. M.; Caldwell, J. W.;Kollman, P. A.; Case, D. A. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 2004, 1157-1174.
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
@@ -35,8 +35,16 @@ used (see references below). Therefore be *_warned_* if using
     # J.W. Ponder and D.A. Case. "Force fields for protein simulations". Adv. Prot. Chem. 66, 27-85 (2003).
  * *[http://www.gromacs.org Gromacs]* ([ftp://ftp.gromacs.org/pub/manual/manual-3.3.pdf manual])
     # Hess, B., Kutzner, C., vanderSpoel, D., and Lindahl, E. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
- * ffamberxx
- ...
+ * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
+    # Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005).
+ ...* AMBER-94 => ffamber94: [http://chemistry.csulb.edu/ffamber/pdfs/cornell_amber94_1995jacs.pdf Cornell et al. (1995), JACS 117, 5179-5197]
+    * AMBER-96 => ffamber96: [http://chemistry.csulb.edu/ffamber/pdfs/kollman_amber_1996acr.pdf Kollman (1996), Acc. Chem. Res. 29, 461-469]
+    * AMBER-99 => ffamber99: [http://chemistry.csulb.edu/ffamber/pdfs/wang_amber99_2000jcc.pdf Wang et al. (2000), J. Comp. Chem. 21, 1049-1074]
+    * AMBER-03 => ffamber03: [http://chemistry.csulb.edu/ffamber/pdfs/duan_AMBER03_2003jcc.pdf Duan et al. (2003), J. Comp. Chem. 24, 1999-2012]
+    * AMBER-GS => ffamberGS: [http://chemistry.csulb.edu/ffamber/pdfs/garcia_amberGS_2002pnas.pdf Garcia & Sanbonmatsu (2002), PNAS 99, 2782-2787]
+    * AMBER-GS-S => ffamberGSs: [http://chemistry.csulb.edu/ffamber/pdfs/garcia_amberGS-S_2003pnas.pdf Nymeyer & Garcia (2003) PNAS 100, 13934-13939]
+    * AMBER-99f => ffamber99p: [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Sorin & Pande (2005). Biophys. J. 88(4), 2472-2493]
+    * AMBER-99SB => ffamber99sb: [http://chemistry.csulb.edu/ffamber/pdfs/simmerling_amber99sb_2006proteins.pdf Hornak et. al (2006). Proteins 65, 712-725]
  * CNS
  * XPLOR
  * XPLOR-HIH
