@@ -89,7 +89,7 @@ cat << EOF >| em.mdp
 cpp                      = /usr/bin/cpp
 define                   = -DFLEXIBLE
 integrator               = steep
-nsteps                   = 100
+nsteps                   = 200
 constraints              = none
 emtol                    = 1000.0
 emstep                   = 0.01
@@ -103,6 +103,28 @@ Pcoupl                   = no
 gen_vel                  = no
 EOF
 
+# Create md.mdp file
+cat << EOF >| md.mdp
+cpp                      = /usr/bin/cpp
+define                   = -DFLEXIBLE
+integrator               = md
+nsteps                   = 1000
+dt                       = 0.002
+constraints              = all-bonds
+emtol                    = 1000.0
+emstep                   = 0.01
+nstcomm                  = 1
+ns_type                  = grid
+rlist                    = 1.0
+rcoulomb                 = 1.0
+rvdw                     = 1.0
+Tcoupl                   = no
+Pcoupl                   = no
+gen_vel                  = yes
+nstxout                  = 2
+lincs-iter               = 2
+EOF
+
 # Setup ions
 grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 \cp Complex.top Complex_ion.top
@@ -112,6 +134,16 @@ echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p 
 # Run minimisaton
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 mdrun -v -deffnm em
+
+# Run a short simulation
+grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
+mdrun -v -deffnm md
+
+# or with openmpi, for a dual core
+grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2 -sort -shuffle
+om-mpirun -n 2 mdrun_mpi -v -deffnm em
+grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2 -sort -shuffle
+om-mpirun -n 2 mdrun_mpi -v -deffnm md
 }}}
 
 *NB(1):* `#include "Ligand.itp"` has to be inserted right after `ffamber**.itp`
