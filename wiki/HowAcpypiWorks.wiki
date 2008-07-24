@@ -51,7 +51,7 @@ used (see references below). Therefore be *_warned_* if using
  * *[http://nmr.cit.nih.gov/xplor-nih/ XPLOR-HIH]*
     # C.D. Schwieters, J.J. Kuszewski, N. Tjandra and G.M. Clore. "The Xplor-NIH NMR Molecular Structure Determination Package". J. Magn. Res., 160, 66-74 (2003).
     # C.D. Schwieters, J.J. Kuszewski and G.M. Clore. "Using Xplor-NIH for NMR molecular structure determination". Progr. NMR Spectroscopy 48, 47-62 (2006).
-    * For a discussion of the effects of using the Amber/GB force field (rather than the Engh-Huber-based targets) see B. Xia, V. Tsui, D.A. Case, H.J. Dyson, and P.E. Wright. "Comparison of protein solution structures refined by molecular dynamics simulation in vacuum, with a generalized Born model, and with explicit water". J. Biomol. NMR 22, 317-331 (2002).
+ * _CNS/XPLOR-NIH_: For a discussion of the effects of using the Amber/GB force field (rather than the Engh-Huber-based targets) see B. Xia, V. Tsui, D.A. Case, H.J. Dyson, and P.E. Wright. "Comparison of protein solution structures refined by molecular dynamics simulation in vacuum, with a generalized Born model, and with explicit water". J. Biomol. NMR 22, 317-331 (2002).
  * *[http://xray.bmc.uu.se/usf/xplo2d_man.html XPLO2D]* ([http://xray.bmc.uu.se/hicup/faq.html FAQ], [ftp://xray.bmc.uu.se/pub/gerard/xutil/ download])
     # G.J. Kleywegt, K. Henrick, E.J. Dodson and D.M.F. van Aalten. "Pound-wise but penny-foolish: How well do micromolecules fare in macromolecular refinement?" Structure, 11, 1051-1059 (2003).
  * *[http://www.charmm.org CHARMM]*
