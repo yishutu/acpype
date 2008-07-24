@@ -1,0 +1,88 @@
+#labels Phase-Deploy
+= How To Use NAMD with AMBER Output Topologies From ACPYPI =
+
+== Introduction ==
+
+This tutorial is to show how to prepare a system to run on NAMD, starting
+with a PDB file for a complex protein/ligand.
+
+For this tutorial I use [http://www.ks.uiuc.edu/Research/namd NAMD]. It is free
+and works fine with AMBER input files, however with some caveats:
+
+    * Polarizable parameters in AMBER are not supported.
+    * NAMD does not support the 10-12 potential terms in some old AMBER versions. When non-zero 10-12 parameter is encountered in PARM file, NAMD will terminate.
+    * NAMD has several exclusion policy options, defined by exclude. The way AMBER dealing with exclusions corresponds to the ``scaled1-4'' in NAMD. So for simulations using AMBER force field, one would specify ``exclude scaled1-4'' in the configuration file, and set 1-4scaling to the inverse value of SCEE as would be used in AMBER.
+    * NAMD does not read periodic box lengths in PARM or coordinate file. They must be explicitly specified in NAMD configuration file.
+    * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if ``authentic'' AMBER cutoff simulations are desired, the switching functions could be turned off by specifying ``switching off'' in NAMD configuration file.
+    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check other sections of this manual for accurate descriptions of the NAMD options.
+
+Besides, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
+better in a cluster of computers. Let's wait for and see GROMACS 4.
+
+*NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
+believe *acpypi* makes this chore easier.
+
+== Running an Example ==
+
+This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
+(HIV protease) with a ligand called DMP. We will use forcefield Amber99.
+
+In a script-like way:
+{{{
+# Assuming 1BVG.pdb, create Ligand.pdb
+wget -c "http://www.pdb.org/pdb/download/downloadFile.do?fileFormat=pdb&compression=NO&structureId=1BVG" -O 1BVG.pdb
+grep 'HETATM' 1BVG.pdb>| Ligand.pdb
+
+# Edit 1BVG.pdb and create ComplexAmber.pdb
+sed s/HIS\ /HID\ /g 1BVG.pdb | sed s/H1\ \ PRO/H3\ \ PRO/g >| ComplexAmber.pdb
+
+# Generate Ligand topology file with acpypi (GAFF)
+acpypi -i Ligand.pdb
+
+# Create a input file with commands for tleap and run it
+cat << EOF >| leap.in
+source oldff/leaprc.ff99
+source leaprc.gaff
+loadoff Ligand.acpypi/Ligand.lib
+loadamberparams Ligand.acpypi/frcmod
+complex = loadpdb ComplexAmber.pdb
+saveamberparm complex ComplexAmber.top ComplexAmber.xyz
+savepdb complex ComplexNAMD.pdb
+quit
+EOF
+tleap -f leap.in >| leap.out
+
+# Create NAMD run file
+cat << EOF >| run_namd.conf
+# non-periodic, use cutoff for non-bond
+#numsteps       1000  # Num of total steps
+#outputEnergies 50  # Energy output frequency
+#restartfreq    50  # Restart file frequency
+DCDfreq        1  # Trajectory file frequency
+timestep       1  # in unit of fs (This is default)
+temperature    300  # Initial temp for velocity assignment
+cutoff         10
+switching      off  # Turn off the switching functions
+exclude        scaled1-4
+1-4scaling     0.833333  # =1/1.2, default is 1.0
+scnb           2  # This is default
+amber          on  # Specify this is AMBER force field
+parmfile       ComplexAmber.top  # Input PARM file
+ambercoor      ComplexAmber.xyz  # Input coordinate file
+outputname     run_namd  # Prefix of output files
+minimize       100
+reinitvels     300
+run            1000 ;# 1ps
+EOF
+
+# Run NAMD
+namd2 run_namd.conf >| run_namd.log
+
+# if dual core is available:
+namd2 +p2 run_namd.conf >| run_namd2.log
+
+# Visualise with VMD
+vmd ComplexNAMD.pdb run_namd.dcd
+}}}
+
+Voila!

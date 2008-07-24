@@ -50,6 +50,9 @@ vmd md.gro md.trr
 At folder *FFF.acpypi*, type:
   * `cns < FFF_CNS.inp`
 
+== To Verify with NAMD ==
+  * see [TutorialNAMD]
+
 == To Install ==
 
 At folder *acpypi*, type:
