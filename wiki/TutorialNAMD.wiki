@@ -16,9 +16,9 @@ and works fine with AMBER input files, however with some caveats:
     * NAMD has several exclusion policy options, defined by `exclude`. The way AMBER dealing with exclusions corresponds to the "scaled1-4" in NAMD. So for simulations using AMBER force field, one would specify "exclude scaled1-4" in the configuration file, and set `1-4scaling` to the inverse value of SCEE as would be used in AMBER.
     * NAMD does not read periodic box lengths in PARM or coordinate file. They must be explicitly specified in NAMD configuration file.
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
-    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check other sections of this manual for accurate descriptions of the NAMD options.
+    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug.pdf NAMD manual] for accurate descriptions of the NAMD options.
 
-Besides, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
+Moreover, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
 better in a cluster of computers. Let's wait for and see GROMACS 4.
 
 *NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
@@ -27,7 +27,7 @@ believe *acpypi* makes this chore easier.
 == Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use forcefield Amber99.
+(HIV protease) with a ligand called DMP. We will use force field Amber99.
 
 In a script-like way:
 {{{
