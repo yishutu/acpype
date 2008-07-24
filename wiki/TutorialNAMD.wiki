@@ -11,9 +11,9 @@ and works fine with AMBER input files, however with some caveats:
 
     * Polarizable parameters in AMBER are not supported.
     * NAMD does not support the 10-12 potential terms in some old AMBER versions. When non-zero 10-12 parameter is encountered in PARM file, NAMD will terminate.
-    * NAMD has several exclusion policy options, defined by exclude. The way AMBER dealing with exclusions corresponds to the ``scaled1-4'' in NAMD. So for simulations using AMBER force field, one would specify ``exclude scaled1-4'' in the configuration file, and set 1-4scaling to the inverse value of SCEE as would be used in AMBER.
+    * NAMD has several exclusion policy options, defined by exclude. The way AMBER dealing with exclusions corresponds to the "scaled1-4" in NAMD. So for simulations using AMBER force field, one would specify "exclude scaled1-4" in the configuration file, and set 1-4scaling to the inverse value of SCEE as would be used in AMBER.
     * NAMD does not read periodic box lengths in PARM or coordinate file. They must be explicitly specified in NAMD configuration file.
-    * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if ``authentic'' AMBER cutoff simulations are desired, the switching functions could be turned off by specifying ``switching off'' in NAMD configuration file.
+    * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
     * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check other sections of this manual for accurate descriptions of the NAMD options.
 
 Besides, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
