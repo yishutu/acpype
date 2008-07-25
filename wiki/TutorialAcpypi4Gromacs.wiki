@@ -52,6 +52,7 @@ Now you should have a operative GROMACS with FFAMBER.
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use forcefield Amber99.
 
+I am trying to set up here the same simulation conditions as in [TutorialNAMD].
 In a script-like way:
 {{{
 # Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb

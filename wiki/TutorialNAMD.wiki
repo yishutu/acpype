@@ -31,6 +31,8 @@ believe *acpypi* makes this chore easier.
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99.
 
+I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs].
+
 In a script-like way:
 {{{
 # Assuming 1BVG.pdb, create Ligand.pdb
