@@ -100,7 +100,7 @@ vmd ComplexNAMD.pdb run_namd.dcd
 Voila!
 
 *NOTE*
-    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs].
+    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs], althought NAMD system ended up with 30 atoms of water more.
     * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
         * 1 proc.: 694%
         * 2 proc.: 624%
