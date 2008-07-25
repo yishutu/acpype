@@ -7,6 +7,8 @@ This tutorial is to show how to prepare a system to run on NAMD, starting
 with a PDB file for a complex protein/ligand.
 
 It is a mere proof of concept.
+If you have suggestions about how to improve this tutorial, please send a
+comment (at the bottom of the page).
 
 For this tutorial I use [http://www.ks.uiuc.edu/Research/namd NAMD]. It is free
 and works fine with AMBER input files, however with some caveats:
@@ -16,7 +18,7 @@ and works fine with AMBER input files, however with some caveats:
     * NAMD has several exclusion policy options, defined by `exclude`. The way AMBER dealing with exclusions corresponds to the "scaled1-4" in NAMD. So for simulations using AMBER force field, one would specify "exclude scaled1-4" in the configuration file, and set `1-4scaling` to the inverse value of SCEE as would be used in AMBER.
     * NAMD does not read periodic box lengths in PARM or coordinate file. They must be explicitly specified in NAMD configuration file.
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
-    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug.pdf NAMD manual] for accurate descriptions of the NAMD options.
+    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug/node15.html NAMD manual] for accurate descriptions of the NAMD options.
 
 Moreover, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
 better in a cluster of computers. Let's wait for and see GROMACS 4.
@@ -43,11 +45,15 @@ acpypi -i Ligand.pdb
 
 # Create a input file with commands for tleap and run it
 cat << EOF >| leap.in
+verbosity 1
 source oldff/leaprc.ff99
 source leaprc.gaff
 loadoff Ligand.acpypi/Ligand.lib
 loadamberparams Ligand.acpypi/frcmod
 complex = loadpdb ComplexAmber.pdb
+solvatebox complex TIP3PBOX 9.65
+addions complex Cl- 27
+addions complex Na+ 23
 saveamberparm complex ComplexAmber.top ComplexAmber.xyz
 savepdb complex ComplexNAMD.pdb
 quit
@@ -56,23 +62,30 @@ tleap -f leap.in >| leap.out
 
 # Create NAMD run file
 cat << EOF >| run_namd.conf
-# non-periodic, use cutoff for non-bond
-#numsteps       1000  # Num of total steps
-#outputEnergies 50  # Energy output frequency
-#restartfreq    50  # Restart file frequency
+rigidBonds     all
+rigidTolerance 0.0005  # Default is  0.00001
+outputEnergies 50  # Energy output frequency
 DCDfreq        1  # Trajectory file frequency
-timestep       1  # in unit of fs (This is default)
+timestep       2  # in unit of fs (This is default)
 temperature    300  # Initial temp for velocity assignment
 cutoff         10
 switching      off  # Turn off the switching functions
-exclude        scaled1-4
-1-4scaling     0.833333  # =1/1.2, default is 1.0
-scnb           2  # This is default
+PME            on  # Use PME for electrostatic calculation
+# Orthogonal periodic box size
+cellBasisVector1   81.8922960  0  0
+cellBasisVector2   0  63.8569220  0
+cellBasisVector3   0  0  60.8145690
+PMEGridSizeX   82
+PMEGridSizeY   64
+PMEGridSizeZ   61
+# NAMD doesn't force neutralization of charge
 amber          on  # Specify this is AMBER force field
 parmfile       ComplexAmber.top  # Input PARM file
 ambercoor      ComplexAmber.xyz  # Input coordinate file
 outputname     run_namd  # Prefix of output files
-minimize       100
+exclude        scaled1-4
+1-4scaling     0.833333  # =1/1.2, default is 1.0
+minimize       200
 reinitvels     300
 run            1000 ;# 1ps
 EOF

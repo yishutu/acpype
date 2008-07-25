@@ -7,6 +7,8 @@ This tutorial is to show how to prepare a system to run on GROMACS, starting
 with a PDB file for a complex protein/ligand.
 
 It is a mere proof of concept.
+If you have suggestions about how to improve this tutorial, please send a
+comment (at the bottom of the page).
 
 *NB:* Besides *acpypi*, *antechamber* and *babel*, you will need GROMACS with
 FFAMBER.
@@ -90,11 +92,12 @@ genbox -cp Complex.pdb -cs ffamber_tip3p.gro -o Complex_b4ion.pdb -p Complex.top
 cat << EOF >| em.mdp
 cpp                      = /usr/bin/cpp
 define                   = -DFLEXIBLE
-integrator               = steep
+integrator               = cg ; steep
 nsteps                   = 200
 constraints              = none
 emtol                    = 1000.0
-emstep                   = 0.01
+nstcgsteep               = 10 ; do a steep every 10 steps of cg
+emstep                   = 0.01 ; used with steep
 nstcomm                  = 1
 ns_type                  = grid
 rlist                    = 1.0
@@ -113,8 +116,6 @@ integrator               = md
 nsteps                   = 1000
 dt                       = 0.002
 constraints              = all-bonds
-emtol                    = 1000.0
-emstep                   = 0.01
 nstcomm                  = 1
 ns_type                  = grid
 rlist                    = 1.0
@@ -123,14 +124,14 @@ rvdw                     = 1.0
 Tcoupl                   = no
 Pcoupl                   = no
 gen_vel                  = yes
-nstxout                  = 2
+nstxout                  = 2 ; write coords every # step
 lincs-iter               = 2
 EOF
 
 # Setup ions
 grompp -f em.mdp -c Complex_b4ion.pdb -p Complex.top -o Complex_b4ion.tpr
 \cp Complex.top Complex_ion.top
-echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top
+echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p Complex_ion.top -norandom
 \mv Complex_ion.top Complex.top
 
 # Run minimisaton
