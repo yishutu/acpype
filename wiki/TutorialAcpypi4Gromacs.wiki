@@ -52,8 +52,6 @@ Now you should have a operative GROMACS with FFAMBER.
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use forcefield Amber99.
 
-I am trying to set up here the same simulation conditions as in [TutorialNAMD].
-
 In a script-like way:
 {{{
 # Assuming Complex.pdb (= 1BVG.pdb), split it in Protein.pdb and Ligand.pdb
@@ -155,3 +153,15 @@ om-mpirun -n 2 mdrun_mpi -v -deffnm md
 line and before `Protein_*.itp` line in _Complex.top_.
 
 Voila!
+
+*NOTE*
+    * I am trying to set up here the same simulation conditions as in [TutorialNAMD].
+    * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
+        * 1 proc.: 694%
+        * 2 proc.: 624%
+    * But NAMD scales better:
+        * NAMD: 1 to 2 proc. gain of 80%
+        * GMX : 1 to 2 proc. gain of 64%
+
+Let's wait for and see GROMACS 4.
+

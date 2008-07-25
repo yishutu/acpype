@@ -20,9 +20,6 @@ and works fine with AMBER input files, however with some caveats:
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
     * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug/node15.html NAMD manual] for accurate descriptions of the NAMD options.
 
-Moreover, although [http://www.gromacs.org GROMACS] is faster, NAMD still scales
-better in a cluster of computers. Let's wait for and see GROMACS 4.
-
 *NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
 believe *acpypi* makes this chore easier.
 
@@ -30,8 +27,6 @@ believe *acpypi* makes this chore easier.
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99.
-
-I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs].
 
 In a script-like way:
 {{{
@@ -68,7 +63,7 @@ rigidBonds     all
 rigidTolerance 0.0005  # Default is  0.00001
 outputEnergies 50  # Energy output frequency
 DCDfreq        1  # Trajectory file frequency
-timestep       2  # in unit of fs (This is default)
+timestep       2  # in unit of fs
 temperature    300  # Initial temp for velocity assignment
 cutoff         10
 switching      off  # Turn off the switching functions
@@ -89,7 +84,7 @@ exclude        scaled1-4
 1-4scaling     0.833333  # =1/1.2, default is 1.0
 minimize       200
 reinitvels     300
-run            1000 ;# 1ps
+run            1000 ;# 2ps
 EOF
 
 # Run NAMD
@@ -103,3 +98,14 @@ vmd ComplexNAMD.pdb run_namd.dcd
 }}}
 
 Voila!
+
+*NOTE*
+    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs].
+    * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
+        * 1 proc.: 694%
+        * 2 proc.: 624%
+    * But NAMD scales better:
+        * NAMD: 1 to 2 proc. gain of 80%
+        * GMX : 1 to 2 proc. gain of 64%
+
+Let's wait for and see GROMACS 4.
