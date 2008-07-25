@@ -159,9 +159,9 @@ Voila!
     * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
         * 1 proc.: 694%
         * 2 proc.: 624%
-    * But NAMD scales better:
-        * NAMD: 1 to 2 proc. gain of 80%
-        * GMX : 1 to 2 proc. gain of 64%
+    * But NAMD scales bette when using 2 proc.:
+        * gain of 80% for NAMD
+        * gain of 64% for GROMACS
 
 Let's wait for and see GROMACS 4.
 
