@@ -46,12 +46,12 @@ verbosity 1
 source oldff/leaprc.ff99
 source leaprc.gaff
 loadoff Ligand.acpypi/Ligand.lib
-loadamberparams Ligand.acpypi/frcmod
+loadamberparams Ligand.acpypi/Ligand_AC.frcmod
 complex = loadpdb ComplexAmber.pdb
 solvatebox complex TIP3PBOX 9.65
 addions complex Cl- 27
 addions complex Na+ 23
-saveamberparm complex ComplexAmber.top ComplexAmber.xyz
+saveamberparm complex ComplexAmber.prmtop ComplexAmber.inpcrd
 savepdb complex ComplexNAMD.pdb
 quit
 EOF
@@ -77,8 +77,8 @@ PMEGridSizeY   64
 PMEGridSizeZ   61
 # NAMD doesn't force neutralization of charge
 amber          on  # Specify this is AMBER force field
-parmfile       ComplexAmber.top  # Input PARM file
-ambercoor      ComplexAmber.xyz  # Input coordinate file
+parmfile       ComplexAmber.prmtop  # Input PARM file
+ambercoor      ComplexAmber.inpcrd  # Input coordinate file
 outputname     run_namd  # Prefix of output files
 exclude        scaled1-4
 1-4scaling     0.833333  # =1/1.2, default is 1.0
@@ -100,7 +100,7 @@ vmd ComplexNAMD.pdb run_namd.dcd
 Voila!
 
 *NOTE*
-    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs], althought NAMD system ended up with 30 atoms of water more.
+    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs], althought NAMD system ended up with 30 atoms of water more and it runs in double precision while GROMACS in single precision.
     * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
         * 1 proc.: 694%
         * 2 proc.: 624%
