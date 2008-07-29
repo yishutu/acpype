@@ -50,7 +50,7 @@ Now you should have an operative GROMACS with ffAMBER.
 == Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use forcefield Amber99.
+(HIV protease) with a ligand called DMP. We will use force field Amber99.
 
 In a script-like way:
 {{{

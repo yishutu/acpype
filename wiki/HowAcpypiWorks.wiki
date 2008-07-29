@@ -8,7 +8,7 @@ it is recommended to use the one that comes in
 It basically does what [http://chemistry.csulb.edu/ffamber/amb2gmx.pl amb2gmx]
 does but with some remarkable differences:
 
-  * as in *amb2gmx.pl*, torsionals (proper and impropers) are treated as RBs in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER forcefields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as propers in GROMACS to use correct AMBER analytical function;
+  * as in *amb2gmx.pl*, torsionals (proper and impropers) are treated as RBs in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as propers in GROMACS to use correct AMBER analytical function;
 
   * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
@@ -21,7 +21,7 @@ does but with some remarkable differences:
 == IMPORTANT ==
 
 Ideally, one should know well about the molecule one is trying to parametrise
-and should read the pertinent papers related to the forcefield intended to be
+and should read the pertinent papers related to the force field intended to be
 used (see references below). Therefore be *_warned_* if using
 *acpypi/antechamber* as a *_blackbox_*.
 
