@@ -26,7 +26,7 @@ believe *acpypi* makes this chore easier.
 == Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use force field Amber99.
+(HIV protease) with a ligand called DMP. We will use force field Amber99SB.
 
 In a script-like way:
 {{{
@@ -43,7 +43,7 @@ acpypi -i Ligand.pdb
 # Create a input file with commands for tleap and run it
 cat << EOF >| leap.in
 verbosity 1
-source oldff/leaprc.ff99
+source leaprc.ff99SB
 source leaprc.gaff
 loadoff Ligand.acpypi/Ligand.lib
 loadamberparams Ligand.acpypi/Ligand_AC.frcmod

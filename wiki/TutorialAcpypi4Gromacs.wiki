@@ -50,7 +50,7 @@ Now you should have an operative GROMACS with ffAMBER.
 == Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use force field Amber99.
+(HIV protease) with a ligand called DMP. We will use force field Amber99SB.
 
 In a script-like way:
 {{{
@@ -66,7 +66,7 @@ sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 
 | sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >| ProteinAmber.pdb
 
 # Process with pdb2gmx and define water
-pdb2gmx -ff amber99 -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p -ignh
+pdb2gmx -ff amber99sb -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p -ignh
 
 # Generate Ligand topology file with acpypi (GAFF)
 acpypi -i Ligand.pdb
@@ -106,6 +106,7 @@ rvdw                     = 1.0
 Tcoupl                   = no
 Pcoupl                   = no
 gen_vel                  = no
+nstxout                  = 1 ; write coords every # step
 EOF
 
 # Create md.mdp file
@@ -137,16 +138,21 @@ echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p 
 # Run minimisaton
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 mdrun -v -deffnm em
+vmd em.gro em.trr
 
 # Run a short simulation
 grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 mdrun -v -deffnm md
+vmd md.gro md.trr
 
 # or with openmpi, for a dual core
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
+vmd em.gro em.trr
+
 grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2 -sort -shuffle
 om-mpirun -n 2 mdrun_mpi -v -deffnm md
+vmd md.gro md.trr
 }}}
 
 *NB(1):* `#include "Ligand.itp"` has to be inserted right after `ffamber**.itp`
