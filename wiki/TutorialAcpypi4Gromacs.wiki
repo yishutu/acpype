@@ -106,7 +106,7 @@ rvdw                     = 1.0
 Tcoupl                   = no
 Pcoupl                   = no
 gen_vel                  = no
-nstxout                  = 1 ; write coords every # step
+nstxout                  = 0 ; write coords every # step
 EOF
 
 # Create md.mdp file
@@ -138,20 +138,18 @@ echo 13| genion -s Complex_b4ion.tpr -o Complex_b4em.pdb -neutral -conc 0.15 -p 
 # Run minimisaton
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 mdrun -v -deffnm em
-vmd em.gro em.trr
 
 # Run a short simulation
 grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 mdrun -v -deffnm md
-vmd md.gro md.trr
 
 # or with openmpi, for a dual core
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
-vmd em.gro em.trr
-
 grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2 -sort -shuffle
 om-mpirun -n 2 mdrun_mpi -v -deffnm md
+
+# Visualise with VMD
 vmd md.gro md.trr
 }}}
 

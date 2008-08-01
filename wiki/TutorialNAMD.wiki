@@ -62,7 +62,7 @@ cat << EOF >| run_namd.conf
 rigidBonds     all
 rigidTolerance 0.0005  # Default is  0.00001
 outputEnergies 50  # Energy output frequency
-DCDfreq        1  # Trajectory file frequency
+DCDfreq        2  # Trajectory file frequency
 timestep       2  # in unit of fs
 temperature    300  # Initial temp for velocity assignment
 cutoff         10
@@ -94,7 +94,7 @@ namd2 run_namd.conf >| run_namd.log
 namd2 +p2 run_namd.conf >| run_namd2.log
 
 # Visualise with VMD
-vmd ComplexNAMD.pdb run_namd.dcd
+vmd -parm7 ComplexAmber.prmtop -rst7 ComplexAmber.inpcrd run_namd.dcd
 }}}
 
 Voila!
