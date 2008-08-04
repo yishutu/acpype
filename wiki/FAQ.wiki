@@ -7,5 +7,5 @@
   * *Q: I have a modified residue in my protein or ligand covalently bonded to  my protein and ACPYPI doesn't work. Why?*
   * *A:* *ACPYPI* is not that smart to automatise this procedure, but one can still  obtain a topology. Soon a tutorial will be available.
 
-  * *Q: *amb2gmx.pl* doesn't use *antechamber* and needs only _parmtop_ and _inpcrd_ files. Why *acpypi* cannot reproduce *amb2gmx.pl* completely?*
+  * *Q: _amb2gmx.pl_ doesn't use _antechamber_ and needs only _parmtop_ and _inpcrd_ files. Why _acpypi_ cannot reproduce _amb2gmx.pl_ completely?*
   * *A:* Not yet! In fact, this feature is on progress. Once done, one will be able to use *tleap/sleap/xleap* from *AMBER* package to generate _parmtop_ and _inpcrd_ files and use them to generate GROMACS files via *acpypi*, in the way *amb2gmx.pl* does, with no need of *ffAMBER*.
