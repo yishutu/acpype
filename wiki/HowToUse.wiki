@@ -63,7 +63,7 @@ For any given *prmtop* and *inpcrd* files (outputs from AMBER LEaP), type:
 
   * ` acpypi -p FFF_AC.prmtop -x FFF_AC.inpcrd`
 
-The output files *FFF_GMX.gro* and *FFF_GMX.top* will be generated at the same
+The output files `FFF_GMX.gro` and `FFF_GMX.top` will be generated at the same
 folder of the input files.
 
 == To Verify with CNS/XPLOR ==

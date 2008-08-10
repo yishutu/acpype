@@ -12,7 +12,7 @@ does but with some remarkable differences:
 
   * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
-  * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpypi* is only limited by the computer memory.
+  * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpypi* is only limited by the computer's memory.
 
   * it generates topologies for CNS/XPLOR;
 
