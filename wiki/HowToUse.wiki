@@ -59,12 +59,12 @@ vmd md.gro md.trr
 
 == To Emulate _[http://chemistry.csulb.edu/ffamber/tools.html amb2gmx.pl]_ ==
 
-For any given *prmtop* and *inpcrd* files (outputs from tLeap), type:
+For any given *prmtop* and *inpcrd* files (outputs from AMBER LEaP), type:
 
   * ` acpypi -p FFF_AC.prmtop -x FFF_AC.inpcrd`
 
-The output files *FFF_GMX.gro* and *FFF_GMX.top* will generated at the same folder of
-the input files.
+The output files *FFF_GMX.gro* and *FFF_GMX.top* will be generated at the same
+folder of the input files.
 
 == To Verify with CNS/XPLOR ==
 At folder *FFF.acpypi*, type:
