@@ -53,8 +53,8 @@ loadoff Ligand.acpypi/Ligand.lib
 loadamberparams Ligand.acpypi/Ligand_AC.frcmod
 complex = loadpdb ComplexAmber.pdb
 solvatebox complex TIP3PBOX 9.65
-addions complex Cl- 27
 addions complex Na+ 23
+addions complex Cl- 27
 saveamberparm complex ComplexAmber.prmtop ComplexAmber.inpcrd
 savepdb complex ComplexNAMD.pdb
 quit
