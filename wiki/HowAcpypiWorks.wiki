@@ -14,6 +14,8 @@ does but with some remarkable differences:
 
   * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpypi* is only limited by the computer's memory.
 
+  * it also reads and converts correctly box (or octahedron) parameters in INPCRD to GRO file, when available, otherwise new box parameters will be calculated.
+
   * it generates topologies for CNS/XPLOR;
 
   * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs).
