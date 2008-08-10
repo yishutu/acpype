@@ -18,7 +18,7 @@ ffAMBER.
 Install [http://www.gromacs.org/ GROMACS]. The current version is 3.3.3.
 Something like:
 
-  * `sudo apt-get install gromacs` # if you use Ubuntu, or
+  * `sudo apt-get install gromacs` # if you use Ubuntu Linux, or
 
   * `fink install gromacs` # if you use Mac
 
@@ -51,6 +51,10 @@ Now you should have an operative GROMACS with ffAMBER.
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99SB.
+
+Luckily, this pdb file has all hydrogens for the ligand, which is necessary for
+*antechamber*. One can use e.g. [http://www.yasara.org YASARA View] to automatically
+add missing hydrogens to one's compound.
 
 In a script-like way:
 {{{

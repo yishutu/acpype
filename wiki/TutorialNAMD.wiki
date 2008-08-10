@@ -28,6 +28,10 @@ believe *acpypi* makes this chore easier.
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99SB.
 
+Luckily, this pdb file has all hydrogens for the ligand, which is necessary for
+*antechamber*. One can use e.g. [http://www.yasara.org YASARA View] to automatically
+add missing hydrogens to one's compound.
+
 In a script-like way:
 {{{
 # Assuming 1BVG.pdb, create Ligand.pdb
