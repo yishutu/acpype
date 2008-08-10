@@ -1,6 +1,9 @@
 #labels Phase-Deploy
 = FAQ =
 
+  * *Q: How do I install _acpypi_?*
+  * *A:* Please, read [HowToUse How To Use ACPYPI] wiki page.
+
   * *Q: Why only one residue per try?*
   * *A:* *ACPYPI* is not ready to deal with more than one chain. In fact, *antechamber* will likely take the first residue name and apply for all. Results can be completely unpredictable. Split your molecular system with one ligand only in each pdb/mol2 file.
 
