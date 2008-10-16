@@ -29,8 +29,11 @@ This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
 (HIV protease) with a ligand called DMP. We will use force field Amber99SB.
 
 Luckily, this pdb file has all hydrogens for the ligand, which is necessary for
-*antechamber*. One can use e.g. [http://www.yasara.org YASARA View] to automatically
-add missing hydrogens to one's compound.
+*antechamber*. One can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb`
+or [http://www.yasara.org YASARA View] to automatically add missing hydrogens to
+your compound. The former just puts 'H' for atom names while the latter puts
+more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply
+ 'H' as *babel* does.
 
 In a script-like way:
 {{{

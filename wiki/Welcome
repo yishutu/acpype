@@ -1,6 +1,6 @@
 = Welcome to ACPYPI! =
 
-A tool based on Python to use *Antechamber* to generate topologies for chemical compounds and to interface with others python applications like [http://www.ccpn.ac.uk CCPN] or [http://aria.pasteur.fr ARIA].
+A tool based on Python to use *Antechamber* to generate topologies for chemical compounds and to interface with others python applications like [http://www.ccpn.ac.uk CCPN] tools or [http://aria.pasteur.fr ARIA].
 
 *acpypi* is pronounced as "_ace + pipe_".
 
@@ -20,8 +20,8 @@ Please, read *[http://code.google.com/p/acpypi/w/list ACPYPI Wiki pages]* for mo
     * *[http://chemistry.csulb.edu/ffamber/tools.html amb2gmx.pl]* by Eric Sorin, David Mobley and John Chodera;
 
     * Elmar Krieger's *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*;
-
-    * *[http://www.gromacs.org/component/option,com_docman/task,doc_details/gid,106/Itemid,26/ topolbuild]* by Bruce Ray;
+       
+    * *[http://www.gromacs.org/component/option,com_docman/task,doc_download/gid,109/Itemid,26/ topolbuild]* by Bruce Ray;
 
     * *[http://xray.bmc.uu.se/hicup/faq.html xplo2d]* by G.J. Kleywegt.
 
