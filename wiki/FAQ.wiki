@@ -18,9 +18,4 @@
   * *A:* You definitely need a pdb/mol2 input file with all atoms (including hydrogens), otherwise *antechamber* (including a step with *mopac*) will not know or (even worse) will calculate wrong parameters and charges. You can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb` or [http://www.yasara.org YASARA View] to automatically add missing hydrogens to your compound. The former just puts 'H' for atom names while the latter puts more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply 'H' as *babel* does.
 
   * *Q: My complex has 2 ligands, what can I do to get it working with GROMACS?*
-  * *A:* Let's say you have `lig1` and `lig2`. Once you have used *ACPYPI* for
-each ligand, you need to merge the `[ atomtypes ]` fields, i.e., take the _atoms lines_
-from `[ atomtypes ]` of `lig2.itp` (delete field `[ atomtypes ]` and its content)
-and add the _atoms lines_ that are not already there in `[ atomtypes ]` of `lig1.itp`.
-The in your `Comple.top` file insert `#include "lig1.itp"`, and below, `#include "lig1.itp"` right below
-`#include "ffamber*.itp"`.
+  * *A:* Let's say you have `lig1` and `lig2`. Once you have used *ACPYPI* for each ligand, you need to merge the `[ atomtypes ]` fields, i.e., take the _atoms lines_ from `[ atomtypes ]` of `lig2.itp` (delete field `[ atomtypes ]` and its content) and add the _atoms lines_ that are not already there in `[ atomtypes ]` of `lig1.itp`. Then in your `Complex.top` file insert `#include "lig1.itp"`, and in the line below, `#include "lig2.itp"` all right below line  `#include "ffamber*.itp"`.
