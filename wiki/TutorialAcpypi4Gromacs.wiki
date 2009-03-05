@@ -15,7 +15,7 @@ ffAMBER.
 
 == Getting GROMACS ==
 
-Install [http://www.gromacs.org/ GROMACS]. The current version is 3.3.3.
+Install [http://www.gromacs.org/ GROMACS]. The current version is 4.0.4.
 Something like:
 
   * `sudo apt-get install gromacs` # if you use Ubuntu Linux, or
@@ -26,21 +26,22 @@ should do the trick.
 
 == Getting [http://chemistry.csulb.edu/ffamber ffAMBER] ==
 
-The appropriate version of ffAMBER for GMX is 3.3.1. Got the one with PDFs.You
+The appropriate version of ffAMBER for GMX is 4.0.x. Got it with PDFs. You
 definitely need to read those papers.
+*WARNING:* due to an issue with ffAMBER99SB, I recommend to use ffAMBER 3.3.1, which is pretty much the same and bugless.
 To summarise in a script-like way:
 {{{
 # assuming you are at acpypi installation folder
-gmx_top_dir=/sw/share/gromacs/top/
-wget -c http://chemistry.csulb.edu/ffamber/ffamber_v3.3.1-doc.tar.gz
-tar xvfz ffamber_v3.3.1-doc.tar.gz
-cd ffamber_v3.3.1/
-sudo \cp ffamber_* ${gmx_top_dir}
-sudo \cp aminoacids-NA.dat ${gmx_top_dir}/aminoacids.dat
-sudo \cp ffamber*/* ${gmx_top_dir}
+gmx_top_dir=/sw/share/gromacs/top
+wget -c http://chemistry.csulb.edu/ffamber/ffamber_v4.0-doc.tar.gz
+tar xvfz ffamber_v4.0-doc.tar.gz
+cd ffamber_v4.0/
+sudo \cp -v ffamber_* ${gmx_top_dir}
+sudo \cp -v aminoacids-NA.dat ${gmx_top_dir}/aminoacids.dat
+sudo \cp -v ffamber*/* ${gmx_top_dir}
 # Get ACPYPI additions:
 # go to acpypi folder
-sudo \cp -b ffamber_additions/* ${gmx_top_dir}
+sudo \cp -vb ffamber_additions/* ${gmx_top_dir}
 }}}
 
 *NB:* `/sw/share/gromacs/top/` is pertinent to Mac. Find the equivalent
@@ -152,9 +153,9 @@ grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 mdrun -v -deffnm md
 
 # or with openmpi, for a dual core
-grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr -np 2
+grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 om-mpirun -n 2 mdrun_mpi -v -deffnm em
-grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr -np 2 -sort -shuffle
+grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 om-mpirun -n 2 mdrun_mpi -v -deffnm md
 
 # Visualise with VMD
