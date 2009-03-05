@@ -28,7 +28,9 @@ should do the trick.
 
 The appropriate version of ffAMBER for GMX is 4.0.x. Got it with PDFs. You
 definitely need to read those papers.
+
 *WARNING:* due to an issue with ffAMBER99SB, I recommend to use ffAMBER 3.3.1, which is pretty much the same and bugless.
+
 To summarise in a script-like way:
 {{{
 # assuming you are at acpypi installation folder
