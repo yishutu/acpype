@@ -19,7 +19,7 @@ does but with some remarkable differences:
 
   * it generates topologies for CNS/XPLOR and a tentative OPLS/AA for GROMACS (experimental);
 
-  * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs and TutorialAcpypi4GromacsOPLS ).
+  * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs and [TutorialAcpypi4GromacsOPLS]).
 
 *HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert than in a _mol2_ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`, *acpypi* will take these charges defined in the _mol2_ input file.
 
