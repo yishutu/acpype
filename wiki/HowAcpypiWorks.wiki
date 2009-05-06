@@ -8,7 +8,7 @@ it is recommended to use the one that comes in
 It basically does what [http://chemistry.csulb.edu/ffamber/amb2gmx.pl amb2gmx]
 does but with some remarkable differences:
 
-  * as in *amb2gmx.pl*, torsionals (proper and improper) are treated as Ryckaert-Bellemans in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as propers in GROMACS to use correct AMBER analytical function;
+  * as in *amb2gmx.pl*, torsionals (proper and improper) are treated as Ryckaert-Bellemans in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as proper dihedrals in GROMACS to use correct AMBER analytical function;
 
   * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
@@ -16,18 +16,103 @@ does but with some remarkable differences:
 
   * it also reads and converts correctly box (or octahedron) parameters in INPCRD to GRO file, when available, otherwise new box parameters will be calculated.
 
-  * it generates topologies for CNS/XPLOR;
+  * it generates topologies for CNS/XPLOR and a tentative OPLS/AA for GROMACS (experimental);
 
-  * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs).
+  * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs and TutorialAcpypi4GromacsOPLS).
 
 *HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert than in a _mol2_ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`, *acpypi* will take these charges defined in the _mol2_ input file.
 
 == IMPORTANT ==
 
-Ideally, one should know well about the molecule one is trying to parametrize
+Ideally, one should know well about the molecule one is trying to parametrise
 and should read the pertinent papers related to the force field intended to be
 used (see references below). Therefore be *_warned_* if using
 *acpypi/antechamber* as a *_blackbox_*.
+
+== A Comparative Test for ACPYPI ==
+
+Running a testing routine, I used `pymol` to generate 22 pdb files.
+They are tripeptides of every amino acid
+including 2 variants for HIS. PDBs with ARG (RRR.pdb) and HIP (JJJ.pdb) are like
+Gly-Res-Gly, because ACPYPI failed when running mopac if the tripeptides mentioned
+are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
+
+I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
+and OPLSAA parameters as reference.
+
+By the way, JJJ.pdb has another problem: its net charge should be +1, but _gasteiger_
+method (the way how ACPYPI try to guess the net charge of the molecule if not
+given) failed to get the right value, instead it says it is 'Zero'. So be aware
+that ACPYPI may guess a wrong net charge when running it on your own molecule.
+
+The I use ACPYPI to generate the topologies for these 22 entries and compare its
+results with the ones from GROMACS reference.
+
+By using ACPYPI with option '-a amber' (which means parm99.dat + gaff.dat +
+frcmod.ff99SB) seems to give to better results then using just GAFF (the default
+option in ACPYPI) when comparing with GROMACS outputs.
+Anyway, a full test with EM with GROMACS should be carried out eventually.
+
+A more detailed comparison between ACPYPI with option '-a amber' results against
+GROMACS' AMBER99SB results and they *match* except by:
+    - charges (can be either _gasteiger_ or _bcc_ with ACPYPI);
+    - WWW.pdb (Trp-Trp-Trp) which has 6 extra improper dihedrals related
+      to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals
+      would be there in order to keep the planarity between 5-ring and 6-ring.
+    - RRR.pdb (Gly-Arg-Gly) for which atom CZ (id 25) got atom type CM instead
+      of CA in GROMACS.
+    - YYY.pdb (Tyr-Tyr-Tyr) for which atom CZ (id 15) got atom type CA instead
+      of C in GROMACS.
+    Nevertheless, their influence are neglectful, also in potential energy.
+
+== ACPYPI and OPLS/AA Parameters Generation (Experimental) ==
+
+The biggest problem here is to guess the correct atom type according to OPLS/AA
+forcefield.
+
+Looking at `.../gromacs/top/ffoplsaanb.itp` file and one can see e.g.:
+{{{
+[ atomtypes ]
+; full atom descriptions are available in ffoplsaa.atp
+; name    bond_type    mass         charge   ptype   sigma        epsilon
+...
+ opls_015   C2  6      14.02700     0.285       A    3.80000e-01  4.93712e-01 ; SIG
+ opls_016   C2  6      14.02700    -0.100       A    3.90500e-01  4.93712e-01 ; SIG
+...
+}}}
+
+In this example, atom types `opls_015` and `opls_016` shared the same `bond_type` but differs
+by charge and van der waals parameters. Having the same `bond_type` means that
+they share the same _bonded_ parameters as seen in `.../gromacs/top/ffoplsaabon.itp`.
+
+Since ACPYPI uses ANTECHAMBER, for it, all atom types found will be also the `bond_type`
+and their charges will be calculated specifically. So the "trick" here is to map the
+GAFF or AMBER atom type against OPLS atom type.
+
+I did it by creating a mapping dictionary that links GAFF or AMBER atom type to a list
+of possible OPLS atom types based on the 22 pdb entries mentioned above by comparing
+GROMACS' OPLS output with ACPYPI's GAFF and AMBER results.
+
+This is not ideal, but I hope it can be helpful since it also shows in the ACPYPI
+GROMACS OPLS _itp_ file output a suggestion of possible replacements for the OPLS
+atom type guessed by ACPYPI.
+
+And since that for `bond_types`, the chances that one picked the right `bond_type`
+are almost sure, the _bonded_ parameters determined by ACPYPI are fundamentally
+correct, leaving just one opened end: the _bonded_ parameters may not be present
+in `.../gromacs/top/ffoplsaabon.itp`, and for that `grompp` will fail showing which
+lines in your _itp_ file have missing parameters.
+
+However, calculated parameters derived for AMBER99SB/GAFF are there and one can just
+comment out by removing "`;`" in that line.
+
+*BUT*, this parameters were NOT calculated for OPLS/AA. An ideal solution would
+involve finding the right OPLS atom types and parameters calculation according to
+[http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
+
+And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
+atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed
+to guess a putative OPLS atom type. Please let me know about it if you run into it.
 
 == References ==
 
@@ -37,7 +122,7 @@ used (see references below). Therefore be *_warned_* if using
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
     # [http://people.cs.vt.edu/~onufriev/PUBLICATIONS/amber8JCC.pdf D.A. Case, T.E. Cheatham, III, T. Darden, H. Gohlke, R. Luo, K.M. Merz, Jr., A. Onufriev, C. Simmerling, B. Wang and R. Woods. "The Amber biomolecular simulation programs". J. Computat. Chem. 26, 1668-1688 (2005)].
     # [http://dasher.wustl.edu/bio5476/reading/advprotchem-66-27-03.pdf J.W. Ponder and D.A. Case. "Force fields for protein simulations". Adv. Prot. Chem. 66, 27-85 (2003)].
- * *[http://www.gromacs.org Gromacs]* ([ftp://ftp.gromacs.org/pub/manual/manual-3.3.pdf manual])
+ * *[http://www.gromacs.org GROMACS]* ([ftp://ftp.gromacs.org/pub/manual/manual-3.3.pdf manual])
     # B. Hess, C. Kutzner, D. van der Spoel and E. Lindahl. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
     # [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
@@ -59,10 +144,12 @@ used (see references below). Therefore be *_warned_* if using
  * *[http://xray.bmc.uu.se/usf/xplo2d_man.html XPLO2D]* ([http://xray.bmc.uu.se/hicup/faq.html FAQ], [ftp://xray.bmc.uu.se/pub/gerard/xutil/ download])
     # G.J. Kleywegt, K. Henrick, E.J. Dodson and D.M.F. van Aalten. "Pound-wise but penny-foolish: How well do micromolecules fare in macromolecular refinement?" Structure, 11, 1051-1059 (2003).
  * *[http://www.charmm.org CHARMM]*
-    # B. R. Brooks, R. E. Bruccoleri, B. D. Olafson, D. J. States, S. Swaminathan and M. Karplus. "CHARMM: A Program for Macromolecular Energy, Minimization, and Dynamics Calculations". J. Comp. Chem. 4, 187-217 (1983).
+    # B.R. Brooks, R.E. Bruccoleri, B.D. Olafson, D.J. States, S. Swaminathan and M. Karplus. "CHARMM: A Program for Macromolecular Energy, Minimization, and Dynamics Calculations". J. Comp. Chem. 4, 187-217 (1983).
  * *[http://www.ks.uiuc.edu/Research/namd NAMD]* ([http://www.ks.uiuc.edu/Research/namd/2.6/ug.pdf manual])
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/PHIL2005/PHIL2005.pdf James C. Phillips, Rosemary Braun, Wei Wang, James Gumbart, Emad Tajkhorshid, Elizabeth Villa, Christophe Chipot, Robert D. Skeel, Laxmikant Kale and Klaus Schulten. "Scalable molecular dynamics with NAMD". Journal of Computational Chemistry. 26, 1781-180 (2005)].
  * *[http://www.ks.uiuc.edu/Research/vmd VMD]* ([http://www.ks.uiuc.edu/Research/vmd/current/ug.pdf manual])
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/HUMP96/HUMP96.pdf W. Humphrey, A. Dalke and K. Schulten. "VMD - Visual Molecular Dynamics". J. Molec. Graphics. 14, 33-38 (1996)].
  * *[http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]* by Alexander !MacKerell
  * *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*
+ * *[http://en.wikipedia.org/wiki/OPLS OPLS]*
+    # [http://dx.doi.org/10.1021%2Fja9621760 W.L. Jorgensen, D.S. Maxwell and J. Tirado-Rives. "Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids". J. Am. Chem. Soc. 118: 11225–11236 (1996)].

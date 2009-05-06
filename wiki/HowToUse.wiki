@@ -15,6 +15,13 @@ At the moment, *acpypi* is only available for download via *svn*:
 
   * `svn checkout http://acpypi.googlecode.com/svn/trunk/ acpypi`
 
+Yet, if some reason you cannot use *svn*, one still can get *acpypi* with:
+
+  * `wget http://acpypi.googlecode.com/svn/trunk/acpypi.py`
+
+But be aware that one may run in extra troubles and I am not willing to support
+this way.
+
 == To Test ==
 
 At folder *acpypi/test*, type:
