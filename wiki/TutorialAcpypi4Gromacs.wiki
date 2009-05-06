@@ -1,3 +1,4 @@
+#summary An example illustrating how to use ACPYPI with GROMACS
 #labels Phase-Deploy
 = Tutorial Using ACPYPI for GROMACS =
 
