@@ -1,3 +1,4 @@
+#summary An example illustrating how to use ACPYPI with GROMACS and OPLS/AA
 #labels Phase-Deploy
 = Tutorial Using ACPYPI for GROMACS with OPLS/AA forcefield =
 
@@ -47,7 +48,7 @@ grep 'HETATM' 1BVG.pdb>| Ligand.pdb
 pdb2gmx -ff oplsaa -f Protein.pdb -o Protein2.pdb -p Protein.top -water spce -ignh
 
 # Generate Ligand topology file with acpypi (GAFF)
-acpypi -i Ligand.pdb -a amber
+acpypi -i Ligand.pdb
 
 # Merge Protein2.pdb + updated Ligand_NEW.pdb -> Complex.pdb
 grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_NEW.pdb >| Complex.pdb

@@ -163,7 +163,7 @@ mdrun -v -deffnm em
 # Run a short simulation
 grompp -f md.mdp -c em.gro -p Complex.top -o md.tpr
 mdrun -v -deffnm md
-
+#summary An example illustrating how to use ACPYPI with GROMACS and AMBER99SB
 # or with openmpi, for a dual core
 grompp -f em.mdp -c Complex_b4em.pdb -p Complex.top -o em.tpr
 om-mpirun -n 2 mdrun_mpi -v -deffnm em

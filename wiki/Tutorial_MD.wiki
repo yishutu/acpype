@@ -1,4 +1,3 @@
-#summary An example illustrating how to use ACPYPI with NAMD
 #labels Phase-Deploy
 = How To Use NAMD with AMBER Output Topologies From ACPYPI =
 
@@ -103,6 +102,30 @@ namd2 +p2 run_namd.conf >| run_namd2.log
 
 # Visualise with VMD
 vmd -parm7 ComplexAmber.prmtop -rst7 ComplexAmber.inpcrd run_namd.dcd
+}}}
+
+== Using _acpypi_ to emulate _amb2gmx.pl_ ==
+Now, using *acpypi* to convert directly from AMBER to GROMACS
+
+{{{
+acpypi -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
+
+# Run minimisaton
+grompp -f em.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
+mdrun -v -deffnm em
+
+# Run a short simulation
+grompp -f md.mdp -c em.gro -p ComplexAmber_GMX.top -o md.tpr
+mdrun -v -deffnm md
+
+# or with openmpi, for a dual core
+grompp -f em.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
+om-mpirun -n 2 mdrun_mpi -v -deffnm em
+grompp -f md.mdp -c em.gro -p ComplexAmber_GMX.top -o md.tpr
+om-mpirun -n 2 mdrun_mpi -v -deffnm md
+
+# Visualise with VMD
+vmd md.gro md.trr
 }}}
 
 Voila!
