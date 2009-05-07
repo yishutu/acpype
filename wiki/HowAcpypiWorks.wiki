@@ -128,11 +128,11 @@ CT  CT  C   N     3     2.51040     4.18400     1.67360    -6.69440     0.00000 
 }}}
 
 As for improper dihedrals, one can assume they are if not identical, at least equivalent, so one can
-use the parameters derived for AMBER99SB by ACPYPI/ANTECHAMBER with OPLS/AA by
-by removing "`;`" in the respective lines.
+use the parameters derived for AMBER99SB by ACPYPI/ANTECHAMBER with OPLS/AA
+by removing "`;`" in the respective lines of your generated _itp_ file.
 
 Nevertheless, an ideal solution would involve finding the right OPLS atom types and parameters
- calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
+calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
 
 And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
 atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed
