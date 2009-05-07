@@ -99,7 +99,8 @@ GROMACS OPLS _itp_ file output a suggestion of possible replacements for the OPL
 atom type guessed by ACPYPI.
 
 And since that for `bond_types`, the chances that one picked the right `bond_type`
-are almost sure, the _bonded_ parameters determined by ACPYPI are fundamentally
+are almost sure (but not always, sometimes a CT can be CT_2 or CT_3 in OPLS/AA),
+the _bonded_ parameters determined by ACPYPI are fundamentally
 correct, leaving just one opened end: the _bonded_ parameters may not be present
 in `.../gromacs/top/ffoplsaabon.itp`, and for that `grompp` will fail showing which
 lines in your _itp_ file have missing parameters.
@@ -107,9 +108,31 @@ lines in your _itp_ file have missing parameters.
 However, calculated parameters derived for AMBER99SB/GAFF are there and one can just
 comment out by removing "`;`" in that line.
 
-*BUT*, this parameters were NOT calculated for OPLS/AA. An ideal solution would
-involve finding the right OPLS atom types and parameters calculation according to
-[http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
+*BUT*, although many parameters for AMBER99SB may be identical to the ones for
+OPLS/AA, e.g.:
+{{{
+(from .../gromacs/top/ffamber99sbbon.itp)
+X   CA  CA  X     3    30.33400     0.00000   -30.33400     0.00000     0.00000     0.00000 ; intrpol.bsd.on C6H6
+
+(from .../gromacs/top/ffoplsaabon.itp)
+  X      CA     CA     X       3     30.33400   0.00000 -30.33400   0.00000   0.00000   0.00000 ; aromatic ring
+}}}
+
+these parameters were NOT calculated for OPLS/AA and so one will find several divergences, e.g.:
+{{{
+(from .../gromacs/top/ffamber99sbbon.itp)
+CT  CT  C   N     3     2.51040     4.18400     1.67360    -6.69440     0.00000     0.00000     ; new99sb
+
+(from .../gromacs/top/ffoplsaabon.itp)
+  CT     CT     C      N       3      4.83252  -7.65254   1.68196   1.13805   0.00000   0.00000 ; propanamide
+}}}
+
+As for improper dihedrals, one can assume they are if not identical, at least equivalent, so one can
+use the parameters derived for AMBER99SB by ACPYPI/ANTECHAMBER with OPLS/AA by
+by removing "`;`" in the respective lines.
+
+Nevertheless, an ideal solution would involve finding the right OPLS atom types and parameters
+ calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
 
 And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
 atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed
