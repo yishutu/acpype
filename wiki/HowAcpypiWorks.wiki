@@ -39,20 +39,20 @@ Gly-Res-Gly, because ACPYPI failed when running mopac if the tripeptides mention
 are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
 
 I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
-and OPLSAA parameters as reference.
+and OPLS/AA forcefields as reference.
 
 By the way, JJJ.pdb has another problem: its net charge should be +1, but _gasteiger_
 method (the way how ACPYPI try to guess the net charge of the molecule if not
 given) failed to get the right value, instead it says it is 'Zero'. So be aware
 that ACPYPI may guess a wrong net charge when running it on your own molecule.
 
-Next, I used ACPYPI to generate the topologies for these 22 entries and compare theirs
+Next, I used ACPYPI to generate the topologies and parameters for these 22 entries and compare theirs
 results with the ones from GROMACS reference.
 
 By using ACPYPI with option '-a amber' (which means parm99.dat + gaff.dat +
 frcmod.ff99SB), it seems to give better results than using just GAFF (the default
 option in ACPYPI) when comparing with GROMACS outputs, i.e., the former basically
-got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference
+got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference,
 while the latter missed just a few more.
 Anyway, a full test with EM with GROMACS should be carried out eventually.
 
@@ -98,8 +98,8 @@ based on its surrounding chemical neighbourhood, which ANTECHAMBER does but not 
 OPLS/AA atom types.
 
 Nevertheless, I hope ACPYPI can be helpful since it also shows in the ACPYPI
-GROMACS OPLS _itp_ file output a suggestion of possible replacements for the OPLS
-atom type guessed by ACPYPI.
+GROMACS OPLS _itp_ output file a suggestion of possible replacements for the OPLS
+atom types guessed by ACPYPI.
 
 Another alternative would be to port the algorithm developed in
 [http://labmm.iq.ufrj.br/mktop MKTOP] (done in _perl_ and following the correct
@@ -108,13 +108,13 @@ then add it to ACPYPI (under study).
 
 Still, since that for `bond_types`, the chances that one picked the right `bond_type`
 are almost sure (but not always, sometimes a CT can be CT_2 or CT_3 in OPLS/AA),
-the _bonded_ parameters determined by ACPYPI are fundamentally
+the _bonded_ parameters (i.e., the topology) determined by ACPYPI are fundamentally
 correct, leaving just one opened end: the _bonded_ parameters may not be present
 in `.../gromacs/top/ffoplsaabon.itp`, and for that `grompp` will fail showing which
 lines in your _itp_ file have missing parameters.
 
 However, calculated parameters derived for AMBER99SB/GAFF are there and one can just
-comment out by removing "`;`" in that line.
+enable them by commenting out (remove "`;`") in that line.
 
 *BUT*, although many parameters for AMBER99SB may be identical to the ones for
 OPLS/AA, e.g.:
@@ -145,7 +145,8 @@ Be aware of it!
 
 By the way, it is important to emphasise that the mechanism used by ANTECHAMBER to
 find the topology (i.e., how atoms are connected in bonds, angles and dihedrals)
-of a chemical compound is pretty reliable for a all atoms forcefields-like.
+of a chemical compound is pretty reliable for an all-atoms forcefields-like (it is just
+the way how AMBER forcefields are developed).
 
 And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
 atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed
