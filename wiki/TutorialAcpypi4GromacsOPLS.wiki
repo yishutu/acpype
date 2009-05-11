@@ -69,7 +69,6 @@ genbox -cp Complex.pdb -cs -o Complex_b4ion.pdb -p Complex.top
 
 # Create em.mdp file
 cat << EOF >| em.mdp
-cpp                      = /usr/bin/cpp
 define                   = -DFLEXIBLE
 integrator               = cg ; steep
 nsteps                   = 200
@@ -167,14 +166,3 @@ vmd md.gro md.trr
 line and before `Protein_*.itp` line in _Complex.top_.
 
 Voila!
-
-====NOTE====
-    * I am trying to set up here the same simulation conditions as in [TutorialNAMD], althought NAMD system ended up with 30 atoms of water more and it runs in double precision while GROMACS in single precision.
-    * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
-        * 1 proc.: 694%
-        * 2 proc.: 624%
-    * But NAMD scales better when using 2 proc.:
-        * gain of 80% for NAMD
-        * gain of 64% for GROMACS
-
-Let's wait for and see GROMACS 4.

@@ -33,7 +33,7 @@ used (see references below). Therefore be *_warned_* if using
 == A Comparative Test for ACPYPI ==
 
 Running a testing routine, I used `pymol` to generate 22 pdb files.
-They are tripeptides of every amino acid
+They are tripeptides of every usual amino acid residue
 including 2 variants for HIS. PDBs with ARG (RRR.pdb) and HIP (JJJ.pdb) are like
 Gly-Res-Gly, because ACPYPI failed when running mopac if the tripeptides mentioned
 are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
@@ -46,16 +46,18 @@ method (the way how ACPYPI try to guess the net charge of the molecule if not
 given) failed to get the right value, instead it says it is 'Zero'. So be aware
 that ACPYPI may guess a wrong net charge when running it on your own molecule.
 
-The I use ACPYPI to generate the topologies for these 22 entries and compare its
+Next, I used ACPYPI to generate the topologies for these 22 entries and compare theirs
 results with the ones from GROMACS reference.
 
 By using ACPYPI with option '-a amber' (which means parm99.dat + gaff.dat +
-frcmod.ff99SB) seems to give to better results then using just GAFF (the default
-option in ACPYPI) when comparing with GROMACS outputs.
+frcmod.ff99SB), it seems to give better results than using just GAFF (the default
+option in ACPYPI) when comparing with GROMACS outputs, i.e., the former basically
+got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference
+while the latter missed just a few more.
 Anyway, a full test with EM with GROMACS should be carried out eventually.
 
-A more detailed comparison between ACPYPI with option '-a amber' results against
-GROMACS' AMBER99SB results and they *match* except by:
+A more detailed comparison between ACPYPI with option '-a amber' against
+GROMACS' AMBER99SB results and it can be seen that they *match* except by:
     * charges (can be either _gasteiger_ or _bcc_ with ACPYPI);
     * WWW.pdb (Trp-Trp-Trp) which has 6 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
     * RRR.pdb (Gly-Arg-Gly) for which atom CZ (id 25) got atom type CM instead of CA in GROMACS;
@@ -91,11 +93,20 @@ I did it by creating a mapping dictionary that links GAFF or AMBER atom type to 
 of possible OPLS atom types based on the 22 pdb entries mentioned above by comparing
 GROMACS' OPLS output with ACPYPI's GAFF and AMBER results.
 
-This is not ideal, but I hope it can be helpful since it also shows in the ACPYPI
+This is not ideal. The correct approach would involve determining the atom chemical function
+based on its surrounding chemical neighbourhood, which ANTECHAMBER does but not for
+OPLS/AA atom types.
+
+Nevertheless, I hope ACPYPI can be helpful since it also shows in the ACPYPI
 GROMACS OPLS _itp_ file output a suggestion of possible replacements for the OPLS
 atom type guessed by ACPYPI.
 
-And since that for `bond_types`, the chances that one picked the right `bond_type`
+Another alternative would be to port the algorithm developed in
+[http://labmm.iq.ufrj.br/mktop MKTOP] (done in _perl_ and following the correct
+approach mentioned above) that determines the OPLS/AA atom types to _python_ and
+then add it to ACPYPI (under study).
+
+Still, since that for `bond_types`, the chances that one picked the right `bond_type`
 are almost sure (but not always, sometimes a CT can be CT_2 or CT_3 in OPLS/AA),
 the _bonded_ parameters determined by ACPYPI are fundamentally
 correct, leaving just one opened end: the _bonded_ parameters may not be present
@@ -129,7 +140,12 @@ use the parameters derived for AMBER99SB by ACPYPI/ANTECHAMBER with OPLS/AA
 by removing "`;`" in the respective lines of your generated _itp_ file.
 
 Nevertheless, an ideal solution would involve finding the right OPLS atom types and parameters
-calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)]. Be aware of it!
+calculation according to [http://dx.doi.org/10.1021%2Fja9621760 Jorgensen et al. (1996)].
+Be aware of it!
+
+By the way, it is important to emphasise that the mechanism used by ANTECHAMBER to
+find the topology (i.e., how atoms are connected in bonds, angles and dihedrals)
+of a chemical compound is pretty reliable for a all atoms forcefields-like.
 
 And a last observation. If one finds in the GROMACS OPLS _itp_ file generated an
 atom type like `opls_x` with mass `0.000`, it's because my mapping dictionary failed

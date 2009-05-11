@@ -83,7 +83,7 @@ cellBasisVector3   0  0  60.8145690
 PMEGridSizeX   82
 PMEGridSizeY   64
 PMEGridSizeZ   61
-# NAMD doesn't force neutralization of charge
+# NAMD doesn't force neutralisation of charge
 amber          on  # Specify this is AMBER force field
 parmfile       ComplexAmber.prmtop  # Input PARM file
 ambercoor      ComplexAmber.inpcrd  # Input coordinate file
@@ -106,14 +106,3 @@ vmd -parm7 ComplexAmber.prmtop -rst7 ComplexAmber.inpcrd run_namd.dcd
 }}}
 
 Voila!
-
-====NOTE====
-    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs], althought NAMD system ended up with 30 atoms of water more and it runs in double precision while GROMACS in single precision.
-    * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
-        * 1 proc.: 694%
-        * 2 proc.: 624%
-    * But NAMD scales better when using 2 proc.:
-        * gain of 80% for NAMD
-        * gain of 64% for GROMACS
-
-Let's wait for and see GROMACS 4.
