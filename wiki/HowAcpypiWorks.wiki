@@ -58,10 +58,14 @@ Anyway, a full test with EM with GROMACS should be carried out eventually.
 
 A more detailed comparison between ACPYPI with option '-a amber' against
 GROMACS' AMBER99SB results and it can be seen that they *match* except by:
-    * charges (can be either _gasteiger_ or _bcc_ with ACPYPI);
-    * WWW.pdb (Trp-Trp-Trp) which has 6 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
+    _in terms of topology_
     * RRR.pdb (Gly-Arg-Gly) for which atom CZ (id 25) got atom type CM instead of CA in GROMACS;
-    * YYY.pdb (Tyr-Tyr-Tyr) for which atom CZ (id 15) got atom type CA instead of C in GROMACS.
+    * WWW.pdb (Trp-Trp-Trp) which has 6 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
+    * YYY.pdb (Tyr-Tyr-Tyr) for which atom CZ (id 15, 36 and 57) got atom type CA instead of C in GROMACS.
+    _in terms of parameters_
+    * charges (can be either _gasteiger_ or _bcc_ with ACPYPI);
+    * RRR.pdb: 3 bonds, 9 angles and 13 dihedrals, all involving atom CZ (id 25), because of atom type changing mentioned above;
+    * YYY.pdb: 6 bonds and 6 dihedrals, all involving atom CZ (id 15, 36 and 57), because of atom type changing mentioned above;
 
 Nevertheless, their influence are neglectful, also in potential energy.
 
