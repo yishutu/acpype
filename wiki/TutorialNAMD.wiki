@@ -27,14 +27,14 @@ believe *acpypi* makes this chore easier.
 == Running an Example ==
 
 This is for protein 1BVG.pdb (get it at [http://www.pdb.org PDB]), a homodimer
-(HIV protease) with a ligand called DMP. We will use force field Amber99SB.
+(HIV protease) with a ligand called DMP. We will use force field AMBER99SB.
 
 Luckily, this pdb file has all hydrogens for the ligand, which is necessary for
 *antechamber*. One can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb`
 or [http://www.yasara.org YASARA View] to automatically add missing hydrogens to
 your compound. The former just puts 'H' for atom names while the latter puts
 more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply
- 'H' as *babel* does.
+'H' as *babel* does.
 
 In a script-like way:
 {{{
@@ -53,10 +53,10 @@ cat << EOF >| leap.in
 verbosity 1
 source leaprc.ff99SB
 source leaprc.gaff
-loadoff Ligand.acpypi/Ligand.lib
+loadoff Ligand.acpypi/Ligand_AC.lib
 loadamberparams Ligand.acpypi/Ligand_AC.frcmod
 complex = loadpdb ComplexAmber.pdb
-solvatebox complex TIP3PBOX 9.65
+solvatebox complex TIP3PBOX 10.0
 addions complex Na+ 23
 addions complex Cl- 27
 saveamberparm complex ComplexAmber.prmtop ComplexAmber.inpcrd
@@ -105,4 +105,92 @@ namd2 +p2 run_namd.conf >| run_namd2.log
 vmd -parm7 ComplexAmber.prmtop -rst7 ComplexAmber.inpcrd run_namd.dcd
 }}}
 
+== Comparing NAMD with GROMACS ==
+
+Now, let's take AMBER input files (`ComplexAmber.prmtop` and `ComplexAmber.inpcrd`)
+and convert them to GROMACS input files right for simulations for the very same
+molecular system.
+
+In a script-like way:
+{{{
+acpypi -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
+
+# Create em.mdp file
+cat << EOF >| em.mdp
+define                   = -DFLEXIBLE
+integrator               = cg ; steep
+nsteps                   = 200
+constraints              = none
+emtol                    = 10.0
+nstcgsteep               = 10 ; do a steep every 10 steps of cg
+emstep                   = 0.01 ; used with steep
+nstcomm                  = 1
+coulombtype              = PME
+ns_type                  = grid
+rlist                    = 1.0
+rcoulomb                 = 1.0
+rvdw                     = 1.4
+Tcoupl                   = no
+Pcoupl                   = no
+gen_vel                  = no
+nstxout                  = 0 ; write coords every # step
+optimize_fft             = yes
+EOF
+
+# Create md.mdp file
+cat << EOF >| md.mdp
+integrator               = md
+nsteps                   = 1000
+dt                       = 0.002
+constraints              = all-bonds
+nstcomm                  = 1
+ns_type                  = grid
+rlist                    = 1.2
+rcoulomb                 = 1.1
+rvdw                     = 1.0
+vdwtype                  = shift
+rvdw-switch              = 0.9
+coulombtype              = PME-Switch
+Tcoupl                   = v-rescale
+tau_t                    = 0.1 0.1
+tc-grps                  = protein non-protein
+ref_t                    = 300 300
+Pcoupl                   = parrinello-rahman
+Pcoupltype               = isotropic
+tau_p                    = 0.5
+compressibility          = 4.5e-5
+ref_p                    = 1.0
+gen_vel                  = yes
+nstxout                  = 2 ; write coords every # step
+lincs-iter               = 2
+DispCorr                 = EnerPres
+EOF
+
+# Run minimisaton
+grompp -f em.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
+mdrun -v -deffnm em
+
+# Run a short simulation
+grompp -f md.mdp -c em.gro -p ComplexAmber_GMX.top -o md.tpr
+mdrun -v -deffnm md
+
+# or with openmpi, for a dual core
+grompp -f em.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
+om-mpirun -n 2 mdrun_mpi -v -deffnm em
+grompp -f md.mdp -c em.gro -p ComplexAmber_GMX.top -o md.tpr
+om-mpirun -n 2 mdrun_mpi -v -deffnm md
+
+# Visualise with VMD
+vmd md.gro md.trr
+}}}
+
 Voila!
+
+====NOTE====
+    * I am trying to set up here the same simulation conditions for NAMD 2.7 and GROMACS 4.0.4, althought NAMD runs in double precision while GROMACS in single precision.
+    * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
+        * 1 proc.: 694%
+        * 2 proc.: 624%
+    * But NAMD scales better when using 2 proc.:
+        * gain of 80% for NAMD
+        * gain of 64% for GROMACS

@@ -116,6 +116,7 @@ gen_vel                  = yes
 nstxout                  = 2 ; write coords every # step
 lincs-iter               = 2
 DispCorr                 = EnerPres
+optimize_fft             = yes
 EOF
 
 # Need to comment out some dih parameters in Ligand.itp that OPLS/AA does not recognise.
