@@ -38,12 +38,13 @@ gmx_top_dir=/sw/share/gromacs/top
 wget -c http://chemistry.csulb.edu/ffamber/ffamber_v4.0-doc.tar.gz
 tar xvfz ffamber_v4.0-doc.tar.gz
 cd ffamber_v4.0/
-sudo \cp -v ffamber_* ${gmx_top_dir}
-sudo \cp -v aminoacids-NA.dat ${gmx_top_dir}/aminoacids.dat
-sudo \cp -v ffamber*/* ${gmx_top_dir}
+sudo cp -bv ffamber_* ${gmx_top_dir}
+sudo cp -bv ffamber*/* ${gmx_top_dir}
+sudo cp -bv vdwradii.dat ${gmx_top_dir}
+sudo cp -bv aminoacids-NA.dat ${gmx_top_dir}/aminoacids.dat
 # Get ACPYPI additions:
 # go to acpypi folder
-sudo \cp -vb ffamber_additions/* ${gmx_top_dir}
+sudo cp -vb ffamber_additions/* ${gmx_top_dir}
 }}}
 
 *NB:* `/sw/share/gromacs/top/` is pertinent to Mac. Find the equivalent
@@ -77,7 +78,7 @@ sed s/PRO\ A\ \ \ 1/NPROA\ \ \ 1/g Protein.pdb | sed s/PRO\ B\ \ \ 1/NPROB\ \ \ 
 | sed s/HIS\ /HID\ /g | sed s/LYS\ /LYP\ /g | sed s/CYS\ /CYN\ /g >| ProteinAmber.pdb
 
 # Process with pdb2gmx and define water
-pdb2gmx -ff amber99sb -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water tip3p -ignh
+pdb2gmx -ff amber99sb -f ProteinAmber.pdb -o Protein2.pdb -p Protein.top -water spce -ignh
 
 # Generate Ligand topology file with acpypi (GAFF)
 acpypi -i Ligand.pdb
