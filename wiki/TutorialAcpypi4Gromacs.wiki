@@ -90,7 +90,7 @@ grep -h ATOM Protein2.pdb Ligand.acpypi/Ligand_NEW.pdb >| Complex.pdb
 \cp Ligand.acpypi/Ligand_GMX.itp Ligand.itp
 \cp Protein.top Complex.top
 # See NB(1) below
-cat Complex.top | sed '/\;\ Include\ chain\ topologies/i\
+cat Complex.top | sed '/\#include\ \"ffamber99sb\.itp\"/a\
 #include "Ligand.itp"
 ' >| Complex2.top
 echo "Ligand   1" >> Complex2.top
