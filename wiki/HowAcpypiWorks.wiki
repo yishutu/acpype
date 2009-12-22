@@ -4,7 +4,7 @@
 
 It is totally based on *ANTECHAMBER* and although it may work with old versions,
 it is recommended to use the one that comes in
-*[http://amber.scripps.edu/AmberTools-get.html AmberTools]* (version 1.2 now).
+*[http://ambermd.org/AmberTools-get.html AmberTools]* (version 1.3 now).
 
 It basically does what [http://chemistry.csulb.edu/ffamber/amb2gmx.pl amb2gmx]
 does but with some remarkable differences:

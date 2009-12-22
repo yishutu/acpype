@@ -5,7 +5,7 @@
 == Introduction ==
 
 To run *acpypi* with its all functionalities, you need *ANTECHAMBER* from package
-[http://amber.scripps.edu/#AmberTools AmberTools] and
+[http://ambermd.org/#AmberTools AmberTools] and
 [http://openbabel.org/wiki/Main_Page Open Babel] if your input files are of PDB
 format.
 
