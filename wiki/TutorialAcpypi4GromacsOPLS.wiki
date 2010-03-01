@@ -16,7 +16,7 @@ comment (at the bottom of the page).
 
 == Getting GROMACS ==
 
-Install [http://www.gromacs.org/ GROMACS]. The current version is 4.0.4.
+Install [http://www.gromacs.org/ GROMACS]. The current version is 4.0.7.
 Something like:
 
   * `sudo apt-get install gromacs` # if you use Ubuntu Linux, or
