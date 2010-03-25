@@ -157,13 +157,13 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
 
 == References ==
 
- * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/items/volume_63/2232000/2232695/2/print/AmberToolsi.pdf manual])
+ * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/product/download/ambertools-users-manual/6252151 manual])
     # J. Wang, W. Wang, P.A. Kollman and D.A. Case. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling, 25, 247-260 (2006).
     # [http://amber.scripps.edu/antechamber/gaff.pdf J. Wang, R.M. Wolf, J.W. Caldwell, P.A. Kollman and D.A. Case. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 1157-1174 (2004)].
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
     # [http://people.cs.vt.edu/~onufriev/PUBLICATIONS/amber8JCC.pdf D.A. Case, T.E. Cheatham, III, T. Darden, H. Gohlke, R. Luo, K.M. Merz, Jr., A. Onufriev, C. Simmerling, B. Wang and R. Woods. "The Amber biomolecular simulation programs". J. Computat. Chem. 26, 1668-1688 (2005)].
     # [http://dasher.wustl.edu/bio5476/reading/advprotchem-66-27-03.pdf J.W. Ponder and D.A. Case. "Force fields for protein simulations". Adv. Prot. Chem. 66, 27-85 (2003)].
- * *[http://www.gromacs.org GROMACS]* ([ftp://ftp.gromacs.org/pub/manual/manual-3.3.pdf manual])
+ * *[http://www.gromacs.org GROMACS]* ([http://www.gromacs.org/@api/deki/files/82/=gromacs4_manual.pdf])
     # B. Hess, C. Kutzner, D. van der Spoel and E. Lindahl. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
     # [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
@@ -192,5 +192,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/HUMP96/HUMP96.pdf W. Humphrey, A. Dalke and K. Schulten. "VMD - Visual Molecular Dynamics". J. Molec. Graphics. 14, 33-38 (1996)].
  * *[http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]* by Alexander !MacKerell
  * *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*
+ * *[http://en.wikipedia.org/wiki/OPLS OPLS]*
+    # [http://dx.doi.org/10.1021%2Fja9621760 W.L. Jorgensen, D.S. Maxwell and J. Tirado-Rives. "Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids". J. Am. Chem. Soc. 118: 11225–11236 (1996)].
  * *[http://en.wikipedia.org/wiki/OPLS OPLS]*
     # [http://dx.doi.org/10.1021%2Fja9621760 W.L. Jorgensen, D.S. Maxwell and J. Tirado-Rives. "Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids". J. Am. Chem. Soc. 118: 11225–11236 (1996)].
