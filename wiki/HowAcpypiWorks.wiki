@@ -186,7 +186,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
     # G.J. Kleywegt, K. Henrick, E.J. Dodson and D.M.F. van Aalten. "Pound-wise but penny-foolish: How well do micromolecules fare in macromolecular refinement?" Structure, 11, 1051-1059 (2003).
  * *[http://www.charmm.org CHARMM]*
     # B.R. Brooks, R.E. Bruccoleri, B.D. Olafson, D.J. States, S. Swaminathan and M. Karplus. "CHARMM: A Program for Macromolecular Energy, Minimization, and Dynamics Calculations". J. Comp. Chem. 4, 187-217 (1983).
- * *[http://www.ks.uiuc.edu/Research/namd NAMD]* ([http://www.ks.uiuc.edu/Research/namd/2.6/ug.pdf manual])
+ * *[http://www.ks.uiuc.edu/Research/namd NAMD]* ([http://www.ks.uiuc.edu/Research/namd/current/ug.pdf manual])
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/PHIL2005/PHIL2005.pdf James C. Phillips, Rosemary Braun, Wei Wang, James Gumbart, Emad Tajkhorshid, Elizabeth Villa, Christophe Chipot, Robert D. Skeel, Laxmikant Kale and Klaus Schulten. "Scalable molecular dynamics with NAMD". Journal of Computational Chemistry. 26, 1781-180 (2005)].
  * *[http://www.ks.uiuc.edu/Research/vmd VMD]* ([http://www.ks.uiuc.edu/Research/vmd/current/ug.pdf manual])
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/HUMP96/HUMP96.pdf W. Humphrey, A. Dalke and K. Schulten. "VMD - Visual Molecular Dynamics". J. Molec. Graphics. 14, 33-38 (1996)].
