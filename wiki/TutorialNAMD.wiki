@@ -19,7 +19,7 @@ and works fine with AMBER input files, however with some caveats:
     * NAMD has several exclusion policy options, defined by `exclude`. The way AMBER dealing with exclusions corresponds to the "scaled1-4" in NAMD. So for simulations using AMBER force field, one would specify "exclude scaled1-4" in the configuration file, and set `1-4scaling` to the inverse value of SCEE as would be used in AMBER.
     * NAMD does not read periodic box lengths in PARM or coordinate file. They must be explicitly specified in NAMD configuration file.
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
-    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug/node15.html NAMD manual] for accurate descriptions of the NAMD options.
+    * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/current/ug/node15.html NAMD manual] for accurate descriptions of the NAMD options.
 
 *NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
 believe *acpypi* makes this chore easier.
