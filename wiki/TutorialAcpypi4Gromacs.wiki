@@ -35,7 +35,7 @@ To summarise in a script-like way:
 {{{
 # assuming you are at acpypi installation folder
 gmx_top_dir=/sw/share/gromacs/top
-wget -c http://chemistry.csulb.edu/ffamber/ffamber_v4.0-doc.tar.gz
+wget -c http://ffamber.cnsm.csulb.edu/ffamber_v4.0-doc.tar.gz
 tar xvfz ffamber_v4.0-doc.tar.gz
 cd ffamber_v4.0/
 sudo cp -bv ffamber_* ${gmx_top_dir}
