@@ -166,7 +166,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
  * *[http://www.gromacs.org GROMACS]* ([http://www.gromacs.org/@api/deki/files/82/=gromacs4_manual.pdf manual])
     # B. Hess, C. Kutzner, D. van der Spoel and E. Lindahl. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
-    # [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
+    # [http://ffamber.cnsm.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
     * AMBER-94 => ffamber94: [http://ffamber.cnsm.csulb.edu/pdfs/cornell_amber94_1995jacs.pdf Cornell et al. (1995), JACS 117, 5179-5197]
     * AMBER-96 => ffamber96: [http://ffamber.cnsm.csulb.edu/pdfs/kollman_amber_1996acr.pdf Kollman (1996), Acc. Chem. Res. 29, 461-469]
     * AMBER-99 => ffamber99: [http://ffamber.cnsm.csulb.edu/pdfs/wang_amber99_2000jcc.pdf Wang et al. (2000), J. Comp. Chem. 21, 1049-1074]
