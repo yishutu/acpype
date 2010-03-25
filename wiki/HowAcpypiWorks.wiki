@@ -168,13 +168,13 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
     # [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
     * AMBER-94 => ffamber94: [http://ffamber.cnsm.csulb.edu/pdfs/cornell_amber94_1995jacs.pdf Cornell et al. (1995), JACS 117, 5179-5197]
-    * AMBER-96 => ffamber96: [http://chemistry.csulb.edu/pdfs/kollman_amber_1996acr.pdf Kollman (1996), Acc. Chem. Res. 29, 461-469]
-    * AMBER-99 => ffamber99: [http://chemistry.csulb.edu/pdfs/wang_amber99_2000jcc.pdf Wang et al. (2000), J. Comp. Chem. 21, 1049-1074]
-    * AMBER-03 => ffamber03: [http://chemistry.csulb.edu/pdfs/duan_AMBER03_2003jcc.pdf Duan et al. (2003), J. Comp. Chem. 24, 1999-2012]
-    * AMBER-GS => ffamberGS: [http://chemistry.csulb.edu/pdfs/garcia_amberGS_2002pnas.pdf Garcia & Sanbonmatsu (2002), PNAS 99, 2782-2787]
-    * AMBER-GS-S => ffamberGSs: [http://chemistry.csulb.edu/pdfs/garcia_amberGS-S_2003pnas.pdf Nymeyer & Garcia (2003) PNAS 100, 13934-13939]
-    * AMBER-99f => ffamber99p: [http://chemistry.csulb.edu/pdfs/sorin_amber99phi_2005bj.pdf Sorin & Pande (2005). Biophys. J. 88(4), 2472-2493]
-    * AMBER-99SB => ffamber99sb: [http://chemistry.csulb.edu/pdfs/simmerling_amber99sb_2006proteins.pdf Hornak et. al (2006). Proteins 65, 712-725]
+    * AMBER-96 => ffamber96: [http://ffamber.cnsm.csulb.edu/pdfs/kollman_amber_1996acr.pdf Kollman (1996), Acc. Chem. Res. 29, 461-469]
+    * AMBER-99 => ffamber99: [http://ffamber.cnsm.csulb.edu/pdfs/wang_amber99_2000jcc.pdf Wang et al. (2000), J. Comp. Chem. 21, 1049-1074]
+    * AMBER-03 => ffamber03: [http://ffamber.cnsm.csulb.edu/pdfs/duan_AMBER03_2003jcc.pdf Duan et al. (2003), J. Comp. Chem. 24, 1999-2012]
+    * AMBER-GS => ffamberGS: [http://ffamber.cnsm.csulb.edu/pdfs/garcia_amberGS_2002pnas.pdf Garcia & Sanbonmatsu (2002), PNAS 99, 2782-2787]
+    * AMBER-GS-S => ffamberGSs: [http://ffamber.cnsm.csulb.edu/pdfs/garcia_amberGS-S_2003pnas.pdf Nymeyer & Garcia (2003) PNAS 100, 13934-13939]
+    * AMBER-99f => ffamber99p: [http://ffamber.cnsm.csulb.edu/pdfs/sorin_amber99phi_2005bj.pdf Sorin & Pande (2005). Biophys. J. 88(4), 2472-2493]
+    * AMBER-99SB => ffamber99sb: [http://ffamber.cnsm.csulb.edu/pdfs/simmerling_amber99sb_2006proteins.pdf Hornak et. al (2006). Proteins 65, 712-725]
  * *[http://cns.csb.yale.edu CNS]*
     # [http://cns.csb.yale.edu/v1.2/about_cns/jn0043.pdf A.T. Brunger, P.D. Adams, G.M. Clore, P.Gros, R.W. Grosse-Kunstleve, J.-S. Jiang, J. Kuszewski, N. Nilges, N.S. Pannu, R.J. Read, L.M. Rice, T. Simonson, G.L. Warren. "Crystallography & NMR System (CNS), A new software suite for macromolecular structure determination". Acta Cryst. D54, 905-921 (1998)].
     # [http://cns.csb.yale.edu/v1.2/about_cns/brunger_nature_protocols_2007.pdf A.T. Brunger. "Version 1.2 of the Crystallography and NMR System". Nature Protocols 2, 2728-2733 (2007)].
