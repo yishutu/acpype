@@ -26,7 +26,7 @@ Something like:
 
 should do the trick.
 
-== Getting [http://chemistry.csulb.edu/ffamber ffAMBER] ==
+== Getting [http://ffamber.cnsm.csulb.edu/ ffAMBER] ==
 
 The appropriate version of ffAMBER for GMX is 4.0.x. Got it with PDFs. You
 definitely need to read those papers.
