@@ -175,6 +175,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
     * AMBER-GS-S => ffamberGSs: [http://ffamber.cnsm.csulb.edu/pdfs/garcia_amberGS-S_2003pnas.pdf Nymeyer & Garcia (2003) PNAS 100, 13934-13939]
     * AMBER-99f => ffamber99p: [http://ffamber.cnsm.csulb.edu/pdfs/sorin_amber99phi_2005bj.pdf Sorin & Pande (2005). Biophys. J. 88(4), 2472-2493]
     * AMBER-99SB => ffamber99sb: [http://ffamber.cnsm.csulb.edu/pdfs/simmerling_amber99sb_2006proteins.pdf Hornak et. al (2006). Proteins 65, 712-725]
+    * AMBER-99BSC0 (not ported yet): Pérez et al. (2007). Biophys J 92, 3817–29
  * *[http://cns.csb.yale.edu CNS]*
     # [http://cns.csb.yale.edu/v1.2/about_cns/jn0043.pdf A.T. Brunger, P.D. Adams, G.M. Clore, P.Gros, R.W. Grosse-Kunstleve, J.-S. Jiang, J. Kuszewski, N. Nilges, N.S. Pannu, R.J. Read, L.M. Rice, T. Simonson, G.L. Warren. "Crystallography & NMR System (CNS), A new software suite for macromolecular structure determination". Acta Cryst. D54, 905-921 (1998)].
     # [http://cns.csb.yale.edu/v1.2/about_cns/brunger_nature_protocols_2007.pdf A.T. Brunger. "Version 1.2 of the Crystallography and NMR System". Nature Protocols 2, 2728-2733 (2007)].
@@ -192,7 +193,5 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
     # [http://www.ks.uiuc.edu/Publications/Papers/PDF/HUMP96/HUMP96.pdf W. Humphrey, A. Dalke and K. Schulten. "VMD - Visual Molecular Dynamics". J. Molec. Graphics. 14, 33-38 (1996)].
  * *[http://www.psc.edu/general/software/packages/charmm/tutorial/mackerell/PARAM_00.pdf Empirical Force Field Parameters]* by Alexander !MacKerell
  * *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*
- * *[http://en.wikipedia.org/wiki/OPLS OPLS]*
-    # [http://dx.doi.org/10.1021%2Fja9621760 W.L. Jorgensen, D.S. Maxwell and J. Tirado-Rives. "Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids". J. Am. Chem. Soc. 118: 11225–11236 (1996)].
  * *[http://en.wikipedia.org/wiki/OPLS OPLS]*
     # [http://dx.doi.org/10.1021%2Fja9621760 W.L. Jorgensen, D.S. Maxwell and J. Tirado-Rives. "Development and Testing of the OPLS All-Atom Force Field on Conformational Energetics and Properties of Organic Liquids". J. Am. Chem. Soc. 118: 11225–11236 (1996)].
