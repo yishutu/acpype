@@ -157,7 +157,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
 
 == References ==
 
- * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/product/download/ambertools-users-manual/6252151 manual])
+ * *[http://amber.scripps.edu/#AmberTools Antechamber]* ([http://www.lulu.com/items/volume_67/2232000/2232695/5/print/AmberToolsi.pdf  manual])
     # J. Wang, W. Wang, P.A. Kollman and D.A. Case. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling, 25, 247-260 (2006).
     # [http://amber.scripps.edu/antechamber/gaff.pdf J. Wang, R.M. Wolf, J.W. Caldwell, P.A. Kollman and D.A. Case. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 1157-1174 (2004)].
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
