@@ -37,7 +37,7 @@ used (see references below). Therefore be *_warned_* if using
 Running a testing routine, I used `pymol` to generate 22 pdb files.
 They are tripeptides of every usual amino acid residue
 including 2 variants for HIS. PDBs with ARG (RRR.pdb) and HIP (JJJ.pdb) are like
-Gly-Res-Gly, because ACPYPI failed when running mopac if the tripeptides mentioned
+Gly-Res-Gly, because ACPYPI failed when running sqm if the tripeptides mentioned
 are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
 
 I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
@@ -52,10 +52,7 @@ Next, I used ACPYPI to generate the topologies and parameters for these 22 entri
 results with the ones from GROMACS reference.
 
 By using ACPYPI with option '-a amber' (which means parm99.dat + gaff.dat +
-frcmod.ff99SB), it seems to give better results than using just GAFF (the default
-option in ACPYPI) when comparing with GROMACS outputs, i.e., the former basically
-got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference,
-while the latter missed just a few more.
+frcmod.ff99SB + frcmod.parmbsc0), it seems to give better results than using just GAFF (the default option in ACPYPI) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
 Anyway, a full test with EM with GROMACS should be carried out eventually.
 
 A more detailed comparison between ACPYPI with option '-a amber' against
