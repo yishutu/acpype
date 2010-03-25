@@ -163,7 +163,7 @@ to guess a putative OPLS atom type. Please let me know about it if you run into 
  * *[http://amber.scripps.edu/#Amber10 AMBER]* ([http://www.lulu.com/items/volume_63/2369000/2369585/1/print/Amber10i.pdf manual])
     # [http://people.cs.vt.edu/~onufriev/PUBLICATIONS/amber8JCC.pdf D.A. Case, T.E. Cheatham, III, T. Darden, H. Gohlke, R. Luo, K.M. Merz, Jr., A. Onufriev, C. Simmerling, B. Wang and R. Woods. "The Amber biomolecular simulation programs". J. Computat. Chem. 26, 1668-1688 (2005)].
     # [http://dasher.wustl.edu/bio5476/reading/advprotchem-66-27-03.pdf J.W. Ponder and D.A. Case. "Force fields for protein simulations". Adv. Prot. Chem. 66, 27-85 (2003)].
- * *[http://www.gromacs.org GROMACS]* ([http://www.gromacs.org/@api/deki/files/82/=gromacs4_manual.pdf])
+ * *[http://www.gromacs.org GROMACS]* ([http://www.gromacs.org/@api/deki/files/82/=gromacs4_manual.pdf manual])
     # B. Hess, C. Kutzner, D. van der Spoel and E. Lindahl. "GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation". J. Chem. Theory Comput., 4, 3, 435-447 (2008).
  * *[http://chemistry.csulb.edu/ffamber ffAMBER]*
     # [http://chemistry.csulb.edu/ffamber/pdfs/sorin_amber99phi_2005bj.pdf Eric J. Sorin and Vijay S. Pande. "Exploring the Helix-Coil Transition via All-Atom Equilibrium Ensemble Simulations". Biophysical Journal, 88 (4), 2472-2493 (2005)].
