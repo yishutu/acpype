@@ -21,12 +21,11 @@ Please, read *[http://code.google.com/p/acpypi/w/list ACPYPI Wiki pages]* for mo
 
     * Elmar Krieger's *[http://www.yasara.org/autosmiles.htm YASARA Autosmiles]*;
 
-    * *[http://www.gromacs.org/component/option,com_docman/task,doc_download/gid,109/Itemid,26/ topolbuild]* by Bruce Ray;
+    * *[http://www.gromacs.org/@api/deki/files/93/=topolbuild1_3.tgz topolbuild]* by Bruce Ray;
 
     * *[http://xray.bmc.uu.se/hicup/faq.html xplo2d]* by G.J. Kleywegt.
 
 == For Antechamber, please cite: ==
 
     # J. Wang, W. Wang, P.A. Kollman and D.A. Case. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling, 25, 247-260 (2006).
-    # [http://amber.scripps.edu/antechamber/gaff.pdf J. Wang, R.M. Wolf, J.W. Caldwell, P.A. Kollman and D.A. Case. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 1157-1174 (2004)].
-
+    # [http://ambermd.org/antechamber/gaff.pdf J. Wang, R.M. Wolf, J.W. Caldwell, P.A. Kollman and D.A. Case. "Development and testing of a general AMBER force field". Journal of Computational Chemistry, 25, 1157-1174 (2004)].
