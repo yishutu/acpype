@@ -1,6 +1,6 @@
-#summary ACPYPI under the bonnet
+#summary ACPYPE under the bonnet
 #labels Phase-Deploy
-= How ACPYPI Works =
+= How ACPYPE Works =
 
 It is totally based on *ANTECHAMBER* and although it may work with old versions,
 it is recommended to use the one that comes in
@@ -9,66 +9,66 @@ it is recommended to use the one that comes in
 It basically does what [http://ffamber.cnsm.csulb.edu/tools.html amb2gmx]
 does but with some remarkable differences:
 
-  * as in *amb2gmx.pl*, torsionals (proper and improper) are treated as Ryckaert-Bellemans in GROMACS to use combine multiple AMBER torsions per quartet. However *acpypi* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as proper dihedrals in GROMACS to use correct AMBER analytical function;
+  * as in *amb2gmx.pl*, torsionals (proper and improper) are treated as Ryckaert-Bellemans in GROMACS to use combine multiple AMBER torsions per quartet. However *acpype* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as proper dihedrals in GROMACS to use correct AMBER analytical function;
 
   * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
-  * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpypi* is only limited by the computer's memory;
+  * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpype* is only limited by the computer's memory;
 
   * it also reads and converts correctly box (or octahedron) parameters in INPCRD to GRO file, when available, otherwise new box parameters will be calculated. Besides it knows if TIP3P or SPCE water and applies the correct parameters;
 
   * it generates topologies for CNS/XPLOR and a tentative OPLS/AA for GROMACS (experimental);
 
-  * *acpypi* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpypi4Gromacs and [TutorialAcpypi4GromacsOPLS]).
+  * *acpype* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpype4Gromacs and [TutorialAcpype4GromacsOPLS]).
 
-*HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert them in a _mol2_ file. If given this _mol2_ file as input to *acpypi* and with option `-c user`, *acpypi* will take these charges defined in the _mol2_ input file.
+*HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert them in a _mol2_ file. If given this _mol2_ file as input to *acpype* and with option `-c user`, *acpype* will take these charges defined in the _mol2_ input file.
 
 == IMPORTANT ==
 
-Because ACPYPI is based on Antechamber, it will as well inherit some of its limitations like not being possible to work work with organic molecule with open valences; containing others atoms than C, N, O, S, P, H, F, Cl, Br and I; or covalently bonded to another molecule. If one wants parameters for a modified amino acid residue, one way of getting it is by neutralising the N- and C- termini and then fit manually the additional parameters to the modified residue.
+Because ACPYPE is based on Antechamber, it will as well inherit some of its limitations like not being possible to work work with organic molecule with open valences; containing others atoms than C, N, O, S, P, H, F, Cl, Br and I; or covalently bonded to another molecule. If one wants parameters for a modified amino acid residue, one way of getting it is by neutralising the N- and C- termini and then fit manually the additional parameters to the modified residue.
 
 Ideally, one should know well about the molecule one is trying to parametrise
 and should read the pertinent papers related to the force field intended to be
 used (see references below). Therefore be *_warned_* if using
-*acpypi/antechamber* as a *_blackbox_*.
+*acpype/antechamber* as a *_blackbox_*.
 
-== A Comparative Test for ACPYPI ==
+== A Comparative Test for ACPYPE ==
 
 Running a testing routine, I used `pymol` to generate 22 pdb files.
 They are tripeptides of every usual amino acid residue
 including 2 variants for HIS. PDBs with ARG (RRR.pdb) and HIP (JJJ.pdb) are like
-Gly-Res-Gly, because ACPYPI failed when running sqm if the tripeptides mentioned
+Gly-Res-Gly, because ACPYPE failed when running sqm if the tripeptides mentioned
 are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
 
 I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
 and OPLS/AA forcefields as reference.
 
 By the way, JJJ.pdb has another problem: its net charge should be +1, but _gasteiger_
-method (the way how ACPYPI try to guess the net charge of the molecule if not
+method (the way how ACPYPE try to guess the net charge of the molecule if not
 given) failed to get the right value, instead it says it is 'Zero'. So be aware
-that ACPYPI may guess a wrong net charge when running it on your own molecule.
+that ACPYPE may guess a wrong net charge when running it on your own molecule.
 
-Next, I used ACPYPI to generate the topologies and parameters for these 22 entries and compare theirs
+Next, I used ACPYPE to generate the topologies and parameters for these 22 entries and compare theirs
 results with the ones from GROMACS reference.
 
-By using ACPYPI with option '-a amber' (which means parm99.dat + gaff.dat +
-frcmod.ff99SB + frcmod.parmbsc0), it seems to give better results than using just GAFF (the default option in ACPYPI) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
+By using ACPYPE with option '-a amber' (which means parm99.dat + gaff.dat +
+frcmod.ff99SB + frcmod.parmbsc0), it seems to give better results than using just GAFF (the default option in ACPYPE) when comparing with GROMACS outputs, i.e., the former basically got almost all atom types and parameters identical to the GROMACS with AMBER99SB reference, while the latter missed just a few more.
 Anyway, a full test with EM with GROMACS should be carried out eventually.
 
-A more detailed comparison between ACPYPI with option '-a amber' against
+A more detailed comparison between ACPYPE with option '-a amber' against
 GROMACS' AMBER99SB results and it can be seen that they *match* except by:
     _in terms of topology_
     * RRR.pdb (Gly-Arg-Gly) for which atom CZ (id 25) got atom type CM instead of CA in GROMACS;
     * WWW.pdb (Trp-Trp-Trp) which has 6 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
     * YYY.pdb (Tyr-Tyr-Tyr) for which atom CZ (id 15, 36 and 57) got atom type CA instead of C in GROMACS.
     _in terms of parameters_
-    * charges (can be either _gasteiger_ or _bcc_ with ACPYPI);
+    * charges (can be either _gasteiger_ or _bcc_ with ACPYPE);
     * RRR.pdb: 3 bonds, 9 angles and 13 dihedrals, all involving atom CZ (id 25), because of atom type changing mentioned above;
     * YYY.pdb: 6 bonds and 6 dihedrals, all involving atom CZ (id 15, 36 and 57), because of atom type changing mentioned above;
 
 Nevertheless, their influence are neglectful, also in potential energy.
 
-== ACPYPI and OPLS/AA Parameters Generation (Experimental) ==
+== ACPYPE and OPLS/AA Parameters Generation (Experimental) ==
 
 The biggest problem here is to guess the correct atom type according to OPLS/AA
 forcefield.
@@ -88,30 +88,30 @@ In this example, atom types `opls_015` and `opls_016` shared the same `bond_type
 by charge and van der waals parameters. Having the same `bond_type` means that
 they share the same _bonded_ parameters as seen in `.../gromacs/top/ffoplsaabon.itp`.
 
-Since ACPYPI uses ANTECHAMBER, for it, all atom types found will be also the `bond_type`
+Since ACPYPE uses ANTECHAMBER, for it, all atom types found will be also the `bond_type`
 and their charges will be calculated specifically. So the "trick" here is to map the
 GAFF or AMBER atom type against OPLS atom type.
 
 I did it by creating a mapping dictionary that links GAFF or AMBER atom type to a list
 of possible OPLS atom types based on the 22 pdb entries mentioned above by comparing
-GROMACS' OPLS output with ACPYPI's GAFF and AMBER results.
+GROMACS' OPLS output with ACPYPE's GAFF and AMBER results.
 
 This is not ideal. The correct approach would involve determining the atom chemical function
 based on its surrounding chemical neighbourhood, which ANTECHAMBER does but not for
 OPLS/AA atom types.
 
-Nevertheless, I hope ACPYPI can be helpful since it also shows in the ACPYPI
+Nevertheless, I hope ACPYPE can be helpful since it also shows in the ACPYPE
 GROMACS OPLS _itp_ output file a suggestion of possible replacements for the OPLS
-atom types guessed by ACPYPI.
+atom types guessed by ACPYPE.
 
 Another alternative would be to port the algorithm developed in
 [http://labmm.iq.ufrj.br/mktop MKTOP] (done in _perl_ and following the correct
 approach mentioned above) that determines the OPLS/AA atom types to _python_ and
-then add it to ACPYPI (under study).
+then add it to ACPYPE (under study).
 
 Still, since that for `bond_types`, the chances that one picked the right `bond_type`
 are almost sure (but not always, sometimes a CT can be CT_2 or CT_3 in OPLS/AA),
-the _bonded_ parameters (i.e., the topology) determined by ACPYPI are fundamentally
+the _bonded_ parameters (i.e., the topology) determined by ACPYPE are fundamentally
 correct, leaving just one opened end: the _bonded_ parameters may not be present
 in `.../gromacs/top/ffoplsaabon.itp`, and for that `grompp` will fail showing which
 lines in your _itp_ file have missing parameters.
@@ -139,7 +139,7 @@ CT  CT  C   N     3     2.51040     4.18400     1.67360    -6.69440     0.00000 
 }}}
 
 As for improper dihedrals, one can assume they are if not identical, at least equivalent, so one can
-use the parameters derived for AMBER99SB by ACPYPI/ANTECHAMBER with OPLS/AA
+use the parameters derived for AMBER99SB by ACPYPE/ANTECHAMBER with OPLS/AA
 by removing "`;`" in the respective lines of your generated _itp_ file.
 
 Nevertheless, an ideal solution would involve finding the right OPLS atom types and parameters

@@ -1,25 +1,25 @@
-#summary Frequent Asked Questions about ACPYPI
+#summary Frequent Asked Questions about ACPYPE
 #labels Phase-Deploy
 = FAQ =
 
-  * *Q: How do I install _acpypi_?*
-  * *A:* Please, read [HowToUse How To Use ACPYPI] wiki page.
+  * *Q: How do I install _acpype_?*
+  * *A:* Please, read [HowToUse How To Use ACPYPE] wiki page.
 
   * *Q: Why only one residue per try?*
-  * *A:* *ACPYPI* is not ready to deal with more than one chain. In fact, *antechamber* will likely take the first residue name and apply it for all. Results can be completely unpredictable. Split your molecular system with one ligand only in each pdb/mol2 file.
+  * *A:* *ACPYPE* is not ready to deal with more than one chain. In fact, *antechamber* will likely take the first residue name and apply it for all. Results can be completely unpredictable. Split your molecular system with one ligand only in each pdb/mol2 file.
 
-  * *Q: I have a modified residue in my protein or ligand covalently bonded to my protein and ACPYPI doesn't work. Why?*
-  * *A:* *ACPYPI* is not that smart to automatise this procedure, but one can still obtain a topology. Soon a tutorial will be available.
+  * *Q: I have a modified residue in my protein or ligand covalently bonded to my protein and ACPYPE doesn't work. Why?*
+  * *A:* *ACPYPE* is not that smart to automatise this procedure, but one can still obtain a topology. Soon a tutorial will be available.
 
-  * ~~*Q: _amb2gmx.pl_ doesn't use _antechamber_ and needs only _parmtop_ and _inpcrd_ files. Why _acpypi_ cannot reproduce _amb2gmx.pl_ completely?*~~
-  * ~~*A:* Not yet! In fact, this feature is on progress. Once done, one will be able to use *tleap/sleap/xleap* from *AMBER* package to generate _parmtop_ and _inpcrd_ files and use them to generate GROMACS files via *acpypi*, in the way *amb2gmx.pl* does, with no need of *ffAMBER*.~~
+  * ~~*Q: _amb2gmx.pl_ doesn't use _antechamber_ and needs only _parmtop_ and _inpcrd_ files. Why _acpype_ cannot reproduce _amb2gmx.pl_ completely?*~~
+  * ~~*A:* Not yet! In fact, this feature is on progress. Once done, one will be able to use *tleap/sleap/xleap* from *AMBER* package to generate _parmtop_ and _inpcrd_ files and use them to generate GROMACS files via *acpype*, in the way *amb2gmx.pl* does, with no need of *ffAMBER*.~~
       * *DONE!*
 
-  * *Q: Why _acpypi_ fails saying it cannot found _antechamber_?*
-  * *A:* If you're not using *ACPYPI* as a replacement for _amb2gmx.pl_ (see the strikeout question above), then you *must* have _[http://amber.scripps.edu/#AmberTools antechamber]_ installed and properly set: either via _$AMBERHOME_ environment variable or with the path to folder containing _antechamber_ binary in your _$PATH_.
+  * *Q: Why _acpype_ fails saying it cannot found _antechamber_?*
+  * *A:* If you're not using *ACPYPE* as a replacement for _amb2gmx.pl_ (see the strikeout question above), then you *must* have _[http://amber.scripps.edu/#AmberTools antechamber]_ installed and properly set: either via _$AMBERHOME_ environment variable or with the path to folder containing _antechamber_ binary in your _$PATH_.
 
-  * *Q: I downloaded a pdb file from [http://www.pdb.org PDB] and it seems to not have hydrogens. When I use _acpypi_ it fails, why?*
+  * *Q: I downloaded a pdb file from [http://www.pdb.org PDB] and it seems to not have hydrogens. When I use _acpype_ it fails, why?*
   * *A:* You definitely need a pdb/mol2 input file with all atoms (including hydrogens), otherwise *antechamber* (including a step with *mopac*) will not know or (even worse) will calculate wrong parameters and charges. You can use either, e.g., `babel -h _mol_w/o_H_.pdb _mol_with_H.pdb` or [http://www.yasara.org YASARA View] to automatically add missing hydrogens to your compound. The former just puts 'H' for atom names while the latter puts more meaningful atom name, e.g., 'HCA' for a H bonded to a CA and not a simply 'H' as *babel* does.
 
   * *Q: My complex has 2 ligands, what can I do to get it working with GROMACS?*
-  * *A:* Let's say you have `lig1` and `lig2`. Once you have used *ACPYPI* for each ligand, you need to merge the `[ atomtypes ]` fields, i.e., take the _atoms lines_ from `[ atomtypes ]` of `lig2.itp` (delete field `[ atomtypes ]` and its content in `lig2.itp` file) and add the _atoms lines_ that are not already there in `[ atomtypes ]` of `lig1.itp`. Then in your `Complex.top` file insert line `#include "lig1.itp"`, and in the line below, `#include "lig2.itp"` all right below line `#include "ffamber*.itp"`. This procedure applies always you have _n >= 2_ ligands.
+  * *A:* Let's say you have `lig1` and `lig2`. Once you have used *ACPYPE* for each ligand, you need to merge the `[ atomtypes ]` fields, i.e., take the _atoms lines_ from `[ atomtypes ]` of `lig2.itp` (delete field `[ atomtypes ]` and its content in `lig2.itp` file) and add the _atoms lines_ that are not already there in `[ atomtypes ]` of `lig1.itp`. Then in your `Complex.top` file insert line `#include "lig1.itp"`, and in the line below, `#include "lig2.itp"` all right below line `#include "ffamber*.itp"`. This procedure applies always you have _n >= 2_ ligands.

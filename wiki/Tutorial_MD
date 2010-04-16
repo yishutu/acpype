@@ -1,5 +1,5 @@
 #labels Phase-Deploy
-= How To Use NAMD with AMBER Output Topologies From ACPYPI =
+= How To Use NAMD with AMBER Output Topologies From ACPYPE =
 
 == Introduction ==
 
@@ -20,8 +20,8 @@ and works fine with AMBER input files, however with some caveats:
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
     * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/2.6/ug/node15.html NAMD manual] for accurate descriptions of the NAMD options.
 
-*NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
-believe *acpypi* makes this chore easier.
+*NB:* One doesn't really need *acpype*, only *antechamber* to do it, but I
+believe *acpype* makes this chore easier.
 
 == Running an Example ==
 
@@ -44,16 +44,16 @@ grep 'HETATM' 1BVG.pdb>| Ligand.pdb
 # Edit 1BVG.pdb and create ComplexAmber.pdb
 sed s/HIS\ /HID\ /g 1BVG.pdb | sed s/H1\ \ PRO/H3\ \ PRO/g >| ComplexAmber.pdb
 
-# Generate Ligand topology file with acpypi (GAFF)
-acpypi -i Ligand.pdb
+# Generate Ligand topology file with acpype (GAFF)
+acpype -i Ligand.pdb
 
 # Create a input file with commands for tleap and run it
 cat << EOF >| leap.in
 verbosity 1
 source leaprc.ff99SB
 source leaprc.gaff
-loadoff Ligand.acpypi/Ligand.lib
-loadamberparams Ligand.acpypi/Ligand_AC.frcmod
+loadoff Ligand.acpype/Ligand.lib
+loadamberparams Ligand.acpype/Ligand_AC.frcmod
 complex = loadpdb ComplexAmber.pdb
 solvatebox complex TIP3PBOX 9.65
 addions complex Na+ 23
@@ -104,11 +104,11 @@ namd2 +p2 run_namd.conf >| run_namd2.log
 vmd -parm7 ComplexAmber.prmtop -rst7 ComplexAmber.inpcrd run_namd.dcd
 }}}
 
-== Using _acpypi_ to emulate _amb2gmx.pl_ ==
-Now, using *acpypi* to convert directly from AMBER to GROMACS
+== Using _acpype_ to emulate _amb2gmx.pl_ ==
+Now, using *acpype* to convert directly from AMBER to GROMACS
 
 {{{
-acpypi -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
+acpype -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
 
 # Run minimisaton
 grompp -f em.mdp -c ComplexAmber_GMX.gro -p ComplexAmber_GMX.top -o em.tpr
@@ -131,7 +131,7 @@ vmd md.gro md.trr
 Voila!
 
 ====NOTE====
-    * I am trying to set up here the same simulation conditions as in [TutorialAcpypi4Gromacs], althought NAMD system ended up with 30 atoms of water more and it runs in double precision while GROMACS in single precision.
+    * I am trying to set up here the same simulation conditions as in [TutorialAcpype4Gromacs], althought NAMD system ended up with 30 atoms of water more and it runs in double precision while GROMACS in single precision.
     * GROMACS is much faster than NAMD in my Mac Intel Duo Core 2Ghz:
         * 1 proc.: 694%
         * 2 proc.: 624%

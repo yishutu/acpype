@@ -1,6 +1,6 @@
-#summary An example illustrating how to use ACPYPI with NAMD
+#summary An example illustrating how to use ACPYPE with NAMD
 #labels Phase-Deploy
-= How To Use NAMD with AMBER Output Topologies From ACPYPI =
+= How To Use NAMD with AMBER Output Topologies From ACPYPE =
 
 == Introduction ==
 
@@ -21,8 +21,8 @@ and works fine with AMBER input files, however with some caveats:
     * By default, NAMD applies switching functions to the non-bond interactions within the cutoff distance, which helps to improve energy conservation, while AMBER does not use switching functions so it simply truncates the interactions at cutoff. However, if "authentic" AMBER cutoff simulations are desired, the switching functions could be turned off by specifying "switching off" in NAMD configuration file.
     * NAMD and AMBER may have different default values for some parameters (e.g., the tolerance of SHAKE). One should check [http://www.ks.uiuc.edu/Research/namd/current/ug/node14.html NAMD manual] for accurate descriptions of the NAMD options.
 
-*NB:* One doesn't really need *acpypi*, only *antechamber* to do it, but I
-believe *acpypi* makes this chore easier.
+*NB:* One doesn't really need *acpype*, only *antechamber* to do it, but I
+believe *acpype* makes this chore easier.
 
 == Running an Example ==
 
@@ -45,16 +45,16 @@ grep 'HETATM' 1BVG.pdb>| Ligand.pdb
 # Edit 1BVG.pdb and create ComplexAmber.pdb
 sed s/HIS\ /HID\ /g 1BVG.pdb | sed s/H1\ \ PRO/H3\ \ PRO/g >| ComplexAmber.pdb
 
-# Generate Ligand topology file with acpypi (GAFF)
-acpypi -i Ligand.pdb
+# Generate Ligand topology file with acpype (GAFF)
+acpype -i Ligand.pdb
 
 # Create a input file with commands for tleap and run it
 cat << EOF >| leap.in
 verbosity 1
 source leaprc.ff99SB
 source leaprc.gaff
-loadoff Ligand.acpypi/Ligand_AC.lib
-loadamberparams Ligand.acpypi/Ligand_AC.frcmod
+loadoff Ligand.acpype/Ligand_AC.lib
+loadamberparams Ligand.acpype/Ligand_AC.frcmod
 complex = loadpdb ComplexAmber.pdb
 solvatebox complex TIP3PBOX 10.0
 addions complex Na+ 23
@@ -113,7 +113,7 @@ molecular system.
 
 In a script-like way:
 {{{
-acpypi -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
+acpype -p ComplexAmber.prmtop -x ComplexAmber.inpcrd
 
 # Create em.mdp file
 cat << EOF >| em.mdp
