@@ -1,13 +1,7 @@
-#summary Other ways to generate charges.
+#summary Other ways to generate charges for ACPYPE
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+About the last option described before, the best rec- ommended method, despite being very time con- suming, is R.E.D. [23, 24], which may use GAUS- SIAN [25] (commercial and quite expensive package) or GAMESS [26]. This approach would closely re- produce the strict one used by AMBER force field developers.
+An important note here. At first, it seems to be a weakness in ACPYPE/ANTECHAMBER approach, similar to the one referred to XPLO2D that a user need an initial set of coordinates for the molecule, but, regardless the conformation of the molecule, ACPYPE/ANTECHAMBER will get the topolog- ical parameters, however with a partial charge con- figuration depending on the input coordinates.
+The rigorous recommended procedure above would be also able to address the problem of not having the initial coordinates of the small molecules by trying to optimise the molecule structure in a quantum mechanical level. Yet, this can be done
+with semi-empirical programmes like SQM itself or via conversion software like CORINA [27].
+There is still a another way to obtain the par- tial charges and that would be to use YASARA Au- toSMILES Server [28], where extra algorithms will try to refine the values calculated by a mopac-like programme. Once with these charges, one can insert them in a MOL2 file to be submitted to ACPYPE as previously mentioned.
