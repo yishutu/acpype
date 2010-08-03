@@ -37,7 +37,7 @@ used (see references below). Therefore be *_warned_* if using
 Running a testing routine, I used `pymol` to generate 22 pdb files.
 They are tripeptides of every usual amino acid residue
 including 2 variants for HIS. PDBs with ARG (RRR.pdb) and HIP (JJJ.pdb) are like
-Gly-Res-Gly, because ACPYPE failed when running sqm if the tripeptides mentioned
+Gly-Res-Gly, because ACPYPE (actually ANTECHAMBER during bond types assignment step) failed when running sqm if the tripeptides mentioned
 are only Arg-Arg-Agr or Hip-Hip-Hip. All peptides have N- and T- termini.
 
 I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
