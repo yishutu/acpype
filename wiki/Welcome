@@ -25,6 +25,10 @@ Please, read *[http://code.google.com/p/acpype/w/list ACPYPE Wiki pages]* for mo
 
     * *[http://xray.bmc.uu.se/hicup/faq.html xplo2d]* by G.J. Kleywegt.
 
+== If you use ACPYPE, please cite: ==
+
+SOUSA DA SILVA, A. W.; VRANKEN, W. F.; LAUE, E. D. ACPYPE - !AnteChamber PYthon Parser interfacE. Manuscript to be submitted.
+
 == For Antechamber, please cite: ==
 
     # J. Wang, W. Wang, P.A. Kollman and D.A. Case. "Automatic atom type and bond type perception in molecular mechanical calculations". Journal of Molecular Graphics and Modelling, 25, 247-260 (2006).
