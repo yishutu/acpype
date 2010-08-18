@@ -43,7 +43,7 @@ is only Arg-Arg-Agr. All peptides have N- and T- termini.
 I used GROMACS with all these tripeptides to generate topology files with AMBER99SB
 and OPLS/AA forcefields as reference.
 
-By the way, JJJ.pdb has another problem: its net charge should be +1, but _gasteiger_
+By the way, there's also an issue with JJJ.pdb (Hip-Hip-Hip): its net charge should be +3, but _gasteiger_
 method (the way how ACPYPE try to guess the net charge of the molecule if not
 given) failed to get the right value, instead it says it is 'Zero'. So be aware
 that ACPYPE may guess a wrong net charge when running it on your own molecule.
