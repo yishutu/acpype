@@ -11,6 +11,8 @@ does but with some remarkable differences:
 
   * as in *amb2gmx.pl*, torsionals (proper and improper) are treated as Ryckaert-Bellemans in GROMACS to use combine multiple AMBER torsions per quartet. However *acpype* follows the approach used in porting AMBER force fields to GROMACS, which  means that improper dihedrals are separated from proper dihedrals and treated as proper dihedrals in GROMACS to use correct AMBER analytical function;
 
+  * *acpype* knows about PARMBSC0 dihedrals parameters and correctly convert them to GROMACS (see [TestingAcpypeAmb2gmx]);
+
   * no dependence at all of *rdparm* or *ambpdb*. Although now *rdparm* is included within *!AmberTools* (before it was only available within *AMBER* package), *ambpdb* is not, which means that if one wants to use *amb2gmx.pl*, one needs *AMBER#* package (where # can be 7 or bigger);
 
   * no fixed size limit in number of atoms as for *amb2gmx.pl*, since usual compilation of *rdparm* limits up to 150k atoms and 50k residues. *acpype* is only limited by the computer's memory;
@@ -19,7 +21,7 @@ does but with some remarkable differences:
 
   * it generates topologies for CNS/XPLOR and a tentative OPLS/AA for GROMACS (experimental);
 
-  * *acpype* tries to smooth the integration with GROMACS for immediate use (see TutorialAcpype4Gromacs and [TutorialAcpype4GromacsOPLS]).
+  * *acpype* tries to smooth the integration with GROMACS for immediate use (see [TutorialAcpype4Gromacs] and [TutorialAcpype4GromacsOPLS]).
 
 *HINT:* One can use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server] to obtain probably better charges and insert them in a _mol2_ file. If given this _mol2_ file as input to *acpype* and with option `-c user`, *acpype* will take these charges defined in the _mol2_ input file.
 
