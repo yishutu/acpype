@@ -5,15 +5,26 @@
 == Summarising ==
 
   * Using ACPYPE to convert AMBER _prmtop_ and _inpcrd_ files to GROMACS and the relative error for the total potential energy for a single point calculation is inferior to 0.009%, at the same range of error of [http://ffamber.cnsm.csulb.edu/#validation ffAMBER].
-  * Using *amb2gmx.pl* or even the modified *amb2gmx_dihe.pl* (kindly provided by Guillem Portella), and the relative error is at least 0.017%, roughly twofold abover ACPYPE's error.
+  * Using *amb2gmx.pl* or even the modified *amb2gmx_dihe.pl* (kindly provided by Guillem Portella), and the relative error is at least 0.017%, roughly twofold above ACPYPE's error.
   * If converting AMBER improper and proper dihedrals to GROMACS, the latter by using the multiple terms instead of RBs, and using `funct = 1` for all improper and proper dihedrals (instead of `9` and `4`), the results are simply the same.
+  * ACPYPE is an alternative way to use PARMBSC0 in GROMACS.
+
+||*kCal/mol*||*Sander 99SB*||*Sander 99BSC0*||*|ERROR|%*||
+||BOND||94.3524||94.3524||0||
+||ANGLE||829.1171||829.1171||0||
+||DIHEDRAL||462.101||468.5221||1.370500986||
+||VDW14||263.4678||263.4678||0||
+||QQ14||-2981.0039||-2981.0039||0||
+||VDW||-366.7021||-366.7021||0||
+||QQ||3650.5729||3650.5729||0||
+||TOT POT||1951.9052||1958.3262||0.327882045||
 
 == Detailing ==
 
 Please see the script and its comments below. You may be able to reproduce the results below as long as you have the programmes needed.
 
 {{{
-# $AMBERHOME/dat/leap/parm/frcmod.parmbsc0: fixe CI mass to 12.01
+# $AMBERHOME/dat/leap/parm/frcmod.parmbsc0: fixed CI mass to 12.01
 # def error(a,b): return abs(a - b)/max(a,b) *100
 # using gromacs 4.5; amb2gmx_dihe.pl provided by Guillem Portella
 
