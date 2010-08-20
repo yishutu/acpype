@@ -81,7 +81,7 @@ ntmin=2,
 ntb=0,
 igb=0,
 cut=999,
-/
+//
 EOF
 
 # Round off DnaAmber.inpcrd to 3 decimals to equals DnaAmber.pdb
