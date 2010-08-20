@@ -10,7 +10,7 @@
   * ACPYPE is an alternative way to use PARMBSC0 in GROMACS.
 
 
-* Table Sander 99SB x 99BSC0 *
+* Table Sander ff99SB x ff99BSC0 *
 || *kCal/mol* || *Sander 99SB (_R1_)* || *Sander 99BSC0 (_R2_)* || *|ERROR|%* ||
 || *BOND*     ||             94.3524||               94.3524||           0||
 || *ANGLE*    ||            829.1171||              829.1171||           0||
