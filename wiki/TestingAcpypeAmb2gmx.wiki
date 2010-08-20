@@ -4,10 +4,8 @@
 
 == Summarising ==
 
-  * Using ACPYPE to convert AMBER _prmtop_ and _inpcrd_ files to GROMACS and the
-relative error for the total potential energy for a single point calculation is inferior to 0.009%, at the same range of error of [http://ffamber.cnsm.csulb.edu/#validation ffAMBER].
-Using *amb2gmx.pl* or even the modified *amb2gmx_dihe.pl* (kindly provided by Guillem Portella), and the
-relative error is at least 0.017%, roughly twofold abover ACPYPE's error.
+  * Using ACPYPE to convert AMBER _prmtop_ and _inpcrd_ files to GROMACS and the relative error for the total potential energy for a single point calculation is inferior to 0.009%, at the same range of error of [http://ffamber.cnsm.csulb.edu/#validation ffAMBER].
+  * Using *amb2gmx.pl* or even the modified *amb2gmx_dihe.pl* (kindly provided by Guillem Portella), and the relative error is at least 0.017%, roughly twofold abover ACPYPE's error.
   * If converting AMBER improper and proper dihedrals to GROMACS, the latter by using the multiple terms instead of RBs, and using `funct = 1` for all improper and proper dihedrals (instead of `9` and `4`), the results are simply the same.
 
 == Detailing ==
