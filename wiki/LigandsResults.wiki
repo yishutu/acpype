@@ -1,6 +1,6 @@
 #summary Complete detailed summarised results for ACPYPE over 17900 ligands from PDB.
 
-The complete file with "Detailed atom report per entry" is [acpype_ligands_results.txt here]
+The complete file with "Detailed atom report per entry" is [http://acpype.googlecode.com/svn/trunk/test/acpype_ligands_results.txt here]
 
 {{{
 & Symbol '&' (ampersand) means lines inserted manually in the automatic generated report
