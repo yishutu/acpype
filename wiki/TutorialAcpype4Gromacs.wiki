@@ -114,7 +114,7 @@ echo "Ligand   1" >> Complex2.top
 
 # Setup the box and add water
 editconf -bt triclinic -f Complex.pdb -o Complex.pdb -d 1.0
-genbox -cp Complex.pdb -cs ffamber_tip3p.gro -o Complex_b4ion.pdb -p Complex.top
+genbox -cp Complex.pdb -cs spc216.gro -o Complex_b4ion.pdb -p Complex.top
 
 # Create em.mdp file
 cat << EOF >| em.mdp
