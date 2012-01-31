@@ -12,5 +12,3 @@ The rigorous recommended procedure above would be also able to address the probl
 There is still a another way to obtain the partial charges and that would be to use [http://www.yasara.org/autosmilesserver.htm YASARA AutoSMILES Server], where extra algorithms will try to refine the values calculated by a mopac-like programme. Save the file in PDB format and you find the charges stored in the occupancy field.
 
 Once you have obtained the charges by one of the methods mentioned above, you can insert them in a MOL2 file to be submitted to ACPYPE using option `-c user`.
-
-PUT A graphic comparing results for SQM x YASARA X RED
