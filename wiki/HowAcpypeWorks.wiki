@@ -44,7 +44,7 @@ I used GROMACS with all these tripeptides to generate topology files with AMBER9
 
 OBS: peptides JJJ.pdb (Hip-Hip-Hip) and RRR.pdb (Arg-Arg-Arg): their net charge should be +3, but _gasteiger_
 method (the way how ACPYPE try to guess the net charge of the molecule if not
-given) failed to get the right value, instead it says it is 'Zero'. So be aware
+given) failed to get the right value, instead it says it is 'Zero', for which SQM programme will fail to calculate the atomic partial charges. So be aware
 that ACPYPE may guess a wrong net charge when running it on your own molecule.
 
 Next, I used ACPYPE to generate the topologies and parameters for these 22 entries and compare theirs
