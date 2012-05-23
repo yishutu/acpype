@@ -58,10 +58,10 @@ GROMACS' AMBER99SB (including a Single Point Energy minimisation with GROMACS) r
     _in terms of topology_
     * entries HHH (Hie-Hie-Hie), JJJ (Hip-Hip-Hip), OOO (Hid-Hid-Hid), RRR (Arg-Arg-Arg) and WWW (Trp-Trp-Trp) have some improper dihedrals inverted;
     * WWW which has 3 extra improper dihedrals related to atoms sharing in the 5-ring and 6-ring of the TRP. These improper dihedrals would be there in order to keep the planarity between 5-ring and 6-ring;
-    * YYY.pdb (Tyr-Tyr-Tyr) for which atom CZ (id 15, 36 and 57) got atom type CA instead of C in GROMACS.
+    * YYY (Tyr-Tyr-Tyr) for which atom CZ (id 15, 36 and 57) got atom type CA instead of C in GROMACS.
     _in terms of parameters_
     * charges (can be either _gasteiger_ or _bcc_ with ACPYPE);
-    * YYY.pdb: 6 bonds and 9 dihedrals, all involving atom CZ (id 15, 36 and 57), because of atom type changing mentioned above;
+    * YYY: 6 bonds and 9 dihedrals, all involving atom CZ (id 15, 36 and 57), because of atom type changing mentioned above;
 
 When we look the bonded potential energies for all entries, the difference is no bigger than 0.002% (even for the entries with inverted improper dihedrals) with one solely exception: YYY with 1.9%, because of the atom type change seen above.
 
