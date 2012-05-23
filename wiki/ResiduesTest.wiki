@@ -1,4 +1,4 @@
-#summary results from check_acpype.py test for 22 residues Amber x Acpype.
+#summary Results from check_acpype.py test for 22 residues Amber x Acpype.
 
 
 The complete output for "22 residues Amber x Acpype Test" is [http://acpype.googlecode.com/svn/trunk/test/acpype_residues_results.txt here]
