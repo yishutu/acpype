@@ -27,7 +27,7 @@ does but with some remarkable differences:
 
 == IMPORTANT ==
 
-Because ACPYPE is based on Antechamber, it will as well inherit some of its limitations like not being possible to work work with organic molecule with open valences; containing others atoms than C, N, O, S, P, H, F, Cl, Br and I; or covalently bonded to another molecule. If one wants parameters for a modified amino acid residue, one way of getting it is by neutralising the N- and C- termini and then fit manually the additional parameters to the modified residue.
+Because ACPYPE is based on Antechamber, it will as well inherit some of its limitations like not being possible to work with organic molecule with open valences; containing others atoms than C, N, O, S, P, H, F, Cl, Br and I; or covalently bonded to another molecule. If one wants parameters for a modified amino acid residue, one way of getting it is by neutralising the N- and C- termini and then fit manually the additional parameters to the modified residue.
 
 Ideally, one should know well about the molecule one is trying to parametrise
 and should read the pertinent papers related to the force field intended to be
