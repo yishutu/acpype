@@ -9,7 +9,7 @@
   * *A:* *ACPYPE* is not ready to deal with more than one chain. In fact, *antechamber* will likely take the first residue name and apply it for all. Results can be completely unpredictable. Split your molecular system with one ligand only in each pdb/mol2 file.
 
   * *Q: I have a modified residue in my protein or ligand covalently bonded to my protein and ACPYPE doesn't work. Why?*
-  * *A:* *ACPYPE* is not that smart to automatise this procedure, but one can still obtain a topology. You need to isolate your special residue with the 2 next residues it is connected: R1-MY_RES-R2 and then make those R1 and R2 (N and T) zwitterions and run ACPYPE. Once you have the parameters in hand, you'll need to manually tweak your topology data around the bonds connected to the modified residue.
+  * *A:* *ACPYPE* is not that smart to automatise this procedure, but one can still obtain a topology. You need to isolate your special residue with the 2 next residues it is connected: Res1-MY_RES-Res2 and then make those Res1 and Res2 (N and T) zwitterions and run ACPYPE. Once you have the parameters in hand, you'll need to manually tweak your topology data around the bonds connected to the modified residue.
 
   * *Q: Why this error `/bin/sh: -i: not found"`?*
   * *A:* You haven't setup you $AMBERHOME and $PATH properly. Rerun ACPYPE with `-d` option for more info.
